@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <title>Student Board</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm">
+        <img src="/static/images/TUD.png" alt="tud-logo">
+        <a class="text-white pr-3 font-weight-bold h5" href="{% url 'home' %}">Student Board</a>
+        <ul class="navbar-nav text h5 ml-2 pb-2">
+            <li class="nav-link"><a class="text-muted" href="#">Home</a></li>
+            <li class="nav-link"><a class="text-muted" href="#">Groups</a></li>
+            <li class="nav-link"><a class="text-muted" href="#">Contact</a></li>
+            <li class="nav-link"><a class="text-muted" href="#">About</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock content %}
+
+</body>
+
+
+
+
+
+</html>

@@ -1,1 +1,2 @@
-# SdevCA1
+superuser:  rhysm
+            sdev3ca1
