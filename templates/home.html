@@ -5,7 +5,7 @@
     {% for topic in all_topics_list %}
     <div class="col-12 pt-3">
         <div class=" card p-3 topics-entry">
-            <h5><a href="">{{ topic.name }}</a></h5>
+            <h5><a href="{% url 'discussion' topic.pk %}">{{ topic.name }}</a></h5>
             <small>{{ topic.description }}</small>
         </div>
     </div>
