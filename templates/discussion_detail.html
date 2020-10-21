@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="discussion-entry">
-    <h4>{{ discussion.title }}</h4>
+    <h4>{{ discussion.title }} - <a class="h5" href="">{{ discussion.topic.name }}</a></h4>
     <small>{{ discussion.body }}</small>
 </div>
 {% endblock content %}

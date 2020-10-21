@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="row">
-        {% for discussion in all_discussions_list %}
-        <div class="col-12 pt-3">
-            <div class=" card p-3 discussion-entry">
-                <h5><a href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title }}</a></h5>
-                <small>{{ discussion.body }}</small>
-            </div>
+<div class="row">
+    {% for discussion in all_discussions_list %}
+    <div class="col-12 pt-3">
+        <div class=" card p-3 discussion-entry">
+            <h5><a href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title }} -
+                    {{ discussion.topic }}</a></h5>
+            <small>{{ discussion.body }}</small>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
 {% endblock content %}
