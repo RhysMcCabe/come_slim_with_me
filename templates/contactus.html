@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+
+<h1> Contact Us</h1>
+            <form name="contactus_form" onsubmit="return validateForm();">
+                <p><label for="Firstname">First Name: </label>
+                <input name="Firstname" type="text"  size="20" maxlength="20" /></p>
+                
+                
+                <p><label for="Lastname">Last Name: </label>
+                <input name="Lastname" type="text"  size="20" maxlength="20" /></p>
+                
+                <p><label for="Email">Email Address: </label>
+                <input name="Email" type="text" size="40" maxlength="30" class="email" /></p>
+        
+                <p>What can we help you with? (max 500 words) </p>
+        
+                <p><textarea name="Comment" cols="70" rows="15" id="Comment"></textarea></p>
+        
+                <input type="submit" name="Submit" value="Submit" class="button"/>
+       
+            
+            </form>
+
+{% endblock content %}
+
