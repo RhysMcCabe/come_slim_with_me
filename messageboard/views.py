@@ -1,10 +1,13 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.urls import reverse_lazy
 from .models import Discussion, Topic
 
 
 class DiscussionListView(ListView):
     model = Discussion
-    template_name = 'discussion.html'
+    template_name = 'discussion_list.html'
     context_object_name = 'all_discussions_list'
 
 
@@ -17,3 +20,31 @@ class TopicListView(ListView):
     model = Topic
     template_name = 'home.html'
     context_object_name = 'all_topics_list'
+
+class DiscussionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Discussion
+    fields = ('title', 'body',)
+    template_name = 'discussion_edit.html'
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.member == self.request.user
+
+class DiscussionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Discussion
+    template_name = 'discussion_delete.html'
+    success_url = reverse_lazy('discussion_list')
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.member == self.request.user
+
+
+class DiscussionCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = Discussion
+    fields = ('title', 'body')
+    template_name = 'discussion_new.html'
+
+    def form_valid(self, form):
+        form.instance.member = self.request.user
+        return super().form_valid(form)

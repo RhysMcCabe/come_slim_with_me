@@ -22,5 +22,4 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('messageboard.urls')),
     path('', include('pages.urls')),
-    # path('contactus/', include('pages.urls'))
 ]
