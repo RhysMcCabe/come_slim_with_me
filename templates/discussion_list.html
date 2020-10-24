@@ -8,6 +8,8 @@
             <h5><a href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title }}</a></h5>
             <h6>{{ discussion.topic }}</h6>
             <small>{{ discussion.body }}</small>
+            <a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> |
+            <a href="{% url 'discussion_delete' discussion.pk %}">Delete</a>
         </div>
     </div>
     {% endfor %}

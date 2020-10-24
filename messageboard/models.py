@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
 class Topic(models.Model):
@@ -26,5 +28,8 @@ class Discussion(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('discussion', args=[str(self.id)])
 
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)

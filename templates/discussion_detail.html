@@ -2,7 +2,11 @@
 
 {% block content %}
 <div class="discussion-entry">
-    <h4>{{ discussion.title }} - <a class="h5" href="">{{ discussion.topic.name }}</a></h4>
-    <small>{{ discussion.body }}</small>
+  <h4>{{ discussion.title }} - <a class="h5" href="">{{ discussion.topic.name }}</a></h4>
+  <small>{{ discussion.body }}</small>
 </div>
+
+<p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
+    href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
+<p>Back to <a href="{% url 'topic' %}">Topics</a>.</p>
 {% endblock content %}
