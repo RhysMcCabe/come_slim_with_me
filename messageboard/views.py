@@ -43,7 +43,7 @@ class DiscussionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return obj.member == self.request.user
 
 
-class DiscussionCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class DiscussionCreateView(CreateView):
     model = Discussion
     template_name = 'discussion_new.html'
     fields = ('title', 'body', 'topic')
@@ -53,9 +53,6 @@ class DiscussionCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         form.instance.member = self.request.user
         return super().form_valid(form)
 
-    def test_func(self):
-        obj = self.get_object()
-        return obj.member == self.request.user
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
