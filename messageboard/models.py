@@ -21,7 +21,8 @@ class Topic(models.Model):
 
 
 class Discussion(models.Model):
-    topic = models.ForeignKey(Topic, related_name="discussion", on_delete=models.CASCADE)
+    topic = models.ForeignKey(
+        Topic, related_name="discussion", on_delete=models.CASCADE)
     title = models.CharField(max_length=140)
     body = models.TextField(max_length=400)
     member = models.ForeignKey(
@@ -34,6 +35,7 @@ class Discussion(models.Model):
 
     def get_absolute_url(self):
         return reverse('discussion_list', args=[str(self.id)])
+
 
 class Comment(models.Model):
     discussion = models.ForeignKey(
