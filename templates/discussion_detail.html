@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="discussion-entry">
-  <h4>{{ discussion.title }} - <a class="h5" href="">{{ discussion.topic.name }}</a></h4>
-  <small>{{ discussion.body }}</small>
-</div>
+<div class="card mt-2">
+  <div class="discussion-entry p-3">
+    <h4>{{ discussion.title }} - <a class="h5" href="">{{ discussion.topic.name }}</a></h4>
+    <p>{{ discussion.body }}</p>
+    <p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
+        href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
+  </div>
 
-<p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
-    href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
-    <div class="card-footer">
-      {% for comment in discussion.comments.all %}
-        <p>
-          <span class="font-weight-bold">{{ comment.member }} &middot;</span>
-          {{ comment }}
-        </p>
-      {% endfor %}
-      <a href="{% url 'discussion_comment' discussion.pk%}">+ New Comment</a>
-    </div> 
-<p>Back to <a href="{% url 'topic' %}">Topics</a>.</p>
+
+  <div class="card-footer">
+    <h6>Comments</h6>
+    {% for comment in discussion.comments.all %}
+
+    <p>
+      <span class="font-weight-bold">{{ comment.member}} &middot;</span>
+      {{ comment }}
+    </p>
+    {% endfor %}
+    <a href="{% url 'discussion_comment' discussion.pk%}">Add Comment</a>
+    <p>Back to <a href="{% url 'topic' %}">Topics</a>.</p>
+  </div>
+
+</div>
 {% endblock content %}

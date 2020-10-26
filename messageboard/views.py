@@ -25,6 +25,10 @@ class TopicListView(ListView):
     template_name = 'home.html'
     context_object_name = 'all_topics_list'
 
+class TopicsDetailView(DetailView):
+    model = Topic
+    template_name = 'topics_detail.html'
+
 
 class DiscussionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Discussion
@@ -78,3 +82,8 @@ class TopicCreateView(CreateView):
     def form_valid(self, form):
         form.instance.member = self.request.user
         return super().form_valid(form)
+
+class SearchResultsListView(ListView):
+    model = Discussion
+    context_object_name = 'all_discussions_list'
+    template_name = 'search_results.html'
