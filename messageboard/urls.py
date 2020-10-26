@@ -19,7 +19,7 @@ urlpatterns = [
     path('discussion/<int:pk>/delete/',
          DiscussionDeleteView.as_view(), name='discussion_delete'),
     path('new/', DiscussionCreateView.as_view(), name='discussion_new'),
-    path('topic/<int:pk>/', DiscussionListView.as_view(), name='discussion_list'),
+    path('discussions', DiscussionListView.as_view(), name='discussion_list'),
     path('discussion/<int:pk>/',
          DiscussionDetailView.as_view(), name='discussion_detail'),
     path('', TopicListView.as_view(), name='topic'),

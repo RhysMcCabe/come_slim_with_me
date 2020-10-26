@@ -4,13 +4,14 @@ from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from .models import Discussion, Topic, Comment
 from braces.views import SelectRelatedMixin
-
+from datetime import datetime
 
 class DiscussionListView(ListView):
     model = Discussion
     template_name = 'discussion_list.html'
     context_object_name = 'all_discussions_list'
     select_related = ("member", "topic")
+    date_created = ("dates")
 
 
 class DiscussionDetailView(DetailView):
@@ -48,7 +49,8 @@ class DiscussionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class DiscussionCreateView(CreateView):
     model = Discussion
     template_name = 'discussion_new.html'
-    fields = ('title', 'body', 'topic')
+    fields = ('title', 'body', 'topic',)
+    success_url = reverse_lazy('discussion_list')
 
     def form_valid(self, form):
         form.instance.member = self.request.user

@@ -29,6 +29,7 @@ class Discussion(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
     )
+    date = models.DateTimeField(auto_now_add=True),
 
     def __str__(self):
         return self.title

@@ -20,9 +20,9 @@
   <nav class="navbar navbar-expand-sm">
     <img src="/static/images/TUD.png" alt="tud-logo">
     <a class="text-white pr-3 font-weight-bold h5" href="{% url 'home' %}">Student Board</a>
-    <ul class="navbar-nav text h5 ml-2 pb-2 float-left">
+    <ul class="navbar-nav text h5 ml-2 pb-2 float-left font-weight-bold">
       <li class="nav-link"><a class="text-muted" href="{% url 'home' %}">Home</a></li>
-      <li class="nav-link"><a class="text-muted" href="#">Discussions</a></li>
+      <li class="nav-link"><a class="text-muted" href="{% url 'discussion_list' %}">Discussions</a></li>
       <li class="nav-link"><a class="text-muted" href="{% url 'contactus' %}">Contact Us</a></li>
       <li class="nav-link"><a class="text-muted" href="#">About</a></li>
     </ul>
@@ -57,7 +57,7 @@
     </div>
   </nav>
   <main>
-    <div class="container">
+    <div class="container w-75">
       {% block content %}
       {% endblock content %}
     </div>

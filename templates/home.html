@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <a href="{% url 'topic_new' %}" class="btn btn-primary m-2">Add new topic</a></li>
 {% endif %}
 <div class="row">
     {% for topic in all_topics_list %}
     <div class="col-4 pt-3 ">
         <div class=" card border-primary topics-entry h-100">
-            <div class="card-header">
-                <h5><a href="{% url 'discussion_list' topic.pk %}">{{ topic.name }}</a></h5>
+            <div class="card-header bg-dark text-white">
+                <h5><a class="text-white" href="{% url 'discussion_list' %}">{{ topic.name }}</a></h5>
                 <small> created by - {{ topic.member }}</small>
                 <p>{{ topic.description }}</p>
                 {% if user.is_authenticated %}
@@ -18,10 +18,11 @@
                 {% endif %}
             </div>
             <div class="card-footer">
-                <small>Discussions:</small>
+                <small class="font-weight-bold">Discussions:</small>
                 {% for discussion in topic.discussions.all %}
                 <div class="row">
-                    <a class="small ml-3 " href="{% url 'discussion_detail' discussion.pk %}">{{ discussion }}</a>
+                    <a class="small ml-3 font-weight-bold "
+                        href="{% url 'discussion_detail' discussion.pk %}">{{ discussion }}</a>
                 </div>
                 {% endfor %}
             </div>
