@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
+    <a href="{% url 'topic_new' %}" class="btn btn-primary m-2">Add new topic</a></li>
+ {% endif %}
 <div class="row">
     {% for topic in all_topics_list %}
     <div class="col-12 pt-3">

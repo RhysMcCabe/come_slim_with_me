@@ -63,3 +63,13 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         form.instance.member = self.request.user
         form.instance.discussion = Discussion.objects.get(pk=self.kwargs['discussion_pk'])
         return super().form_valid(form)
+
+class TopicCreateView(CreateView):
+    model = Topic
+    template_name = 'topic_new.html'
+    fields = ('name', 'description')
+
+
+    def form_valid(self, form):
+        form.instance.member = self.request.user
+        return super().form_valid(form)

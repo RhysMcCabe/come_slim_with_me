@@ -16,6 +16,9 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('home', args=[str(self.id)])
+
 
 class Discussion(models.Model):
     topic = models.ForeignKey(Topic, related_name="discussion", on_delete=models.CASCADE)
