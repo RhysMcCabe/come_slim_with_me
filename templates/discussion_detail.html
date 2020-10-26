@@ -8,5 +8,14 @@
 
 <p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
     href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
+    <div class="card-footer">
+      {% for comment in discussion.comments.all %}
+        <p>
+          <span class="font-weight-bold">{{ comment.member }} &middot;</span>
+          {{ comment }}
+        </p>
+      {% endfor %}
+      <a href="{% url 'discussion_comment' discussion.pk%}">+ New Comment</a>
+    </div> 
 <p>Back to <a href="{% url 'topic' %}">Topics</a>.</p>
 {% endblock content %}

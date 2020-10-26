@@ -6,14 +6,17 @@ from .views import(
     DiscussionDeleteView,
     DiscussionCreateView,
     TopicListView,
+    CommentCreateView
 )
 
 urlpatterns = [
+    path('discussion/<int:discussion_pk>/comment/',
+         CommentCreateView.as_view(), name='discussion_comment'),
     path('discussion/<int:pk>/edit/',
          DiscussionUpdateView.as_view(), name='discussion_edit'),
     path('discussion/<int:pk>/delete/',
          DiscussionDeleteView.as_view(), name='discussion_delete'),
-    path('discussion/new/', DiscussionCreateView.as_view(), name='discussion_new'),
+    path('new/', DiscussionCreateView.as_view(), name='discussion_new'),
     path('topic/<int:pk>/', DiscussionListView.as_view(), name='discussion_list'),
     path('discussion/<int:pk>/',
          DiscussionDetailView.as_view(), name='discussion_detail'),
