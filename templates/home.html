@@ -6,10 +6,25 @@
 {% endif %}
 <div class="row">
     {% for topic in all_topics_list %}
-    <div class="col-12 pt-3">
-        <div class=" card p-3 topics-entry">
-            <h5><a href="{% url 'discussion_list' topic.pk %}">{{ topic.name }}</a></h5>
-            <small>{{ topic.description }}</small>
+    <div class="col-4 pt-3 ">
+        <div class=" card border-primary topics-entry h-100">
+            <div class="card-header">
+                <h5><a href="{% url 'discussion_list' topic.pk %}">{{ topic.name }}</a></h5>
+                <small> created by - {{ topic.member }}</small>
+                <p>{{ topic.description }}</p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'discussion_new' %}" class="btn btn-primary btn-sm">Add new {{ topic }} discussion</a>
+                </li>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <small>Discussions:</small>
+                {% for discussion in topic.discussions.all %}
+                <div class="row">
+                    <a class="small ml-3 " href="{% url 'discussion_detail' discussion.pk %}">{{ discussion }}</a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     {% endfor %}

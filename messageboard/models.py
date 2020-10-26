@@ -22,7 +22,7 @@ class Topic(models.Model):
 
 class Discussion(models.Model):
     topic = models.ForeignKey(
-        Topic, related_name="discussion", on_delete=models.CASCADE)
+        Topic, related_name="discussions", on_delete=models.CASCADE)
     title = models.CharField(max_length=140)
     body = models.TextField(max_length=400)
     member = models.ForeignKey(

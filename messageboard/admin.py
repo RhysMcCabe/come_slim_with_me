@@ -12,8 +12,17 @@ class DiscussionAdmin(admin.ModelAdmin):
         CommentInline
     ]
 
+class DiscussionInLine(admin.TabularInline):
+    model = Discussion
+    extra = 0
+
+class TopicAdmin(admin.ModelAdmin):
+    inlines = [
+        DiscussionInLine
+    ]
+
 admin.site.register(Discussion, DiscussionAdmin)
 
-admin.site.register(Topic)
+admin.site.register(Topic, TopicAdmin)
 
 admin.site.register(Comment)
