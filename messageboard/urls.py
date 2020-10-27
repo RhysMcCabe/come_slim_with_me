@@ -8,12 +8,14 @@ from .views import(
     TopicListView,
     CommentCreateView,
     TopicCreateView,
-    SearchResultsListView,
-    TopicsDetailView
+    TopicSearchResultsView,
+    TopicsDetailView,
+    TopicDeleteView
 )
 
 urlpatterns = [
 
+     path('topics/<int:pk>/delete/', TopicDeleteView.as_view(), name='topic_delete'),
      path('topics/<int:pk>/', TopicsDetailView.as_view(), name='topics_detail'),
     path('topic_new/', TopicCreateView.as_view(), name='topic_new'),
     path('discussion/<int:discussion_pk>/comment/',
@@ -26,6 +28,7 @@ urlpatterns = [
     path('discussions', DiscussionListView.as_view(), name='discussion_list'),
     path('discussion/<int:pk>/',
          DiscussionDetailView.as_view(), name='discussion_detail'),
+     path('topics/search/', TopicSearchResultsView.as_view(), name='search_results'),
     path('', TopicListView.as_view(), name='topic'),
-    path('search/', SearchResultsListView.as_view(), name='search_results'),
+    
 ]

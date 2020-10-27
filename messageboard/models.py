@@ -17,7 +17,7 @@ class Topic(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('home', args=[str(self.id)])
+        return reverse('topics_detail', args=[str(self.id)])
 
 
 class Discussion(models.Model):
