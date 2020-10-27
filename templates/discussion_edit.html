@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Edit</h1>
-  <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-info ml-2" type="submit">Update</button>
-  </form>
+<div class="container-fluid pl-4 mt-4">
+  <div class="card p-4 w-50">
+    <h4>Editing {{ discussion.title }} in '{{ discussion.topic }}'</h4>
+    <form action="" method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-info ml-2" type="submit">Update</button>
+    </form>
+  </div>
+</div>
 {% endblock content %}

@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2 class="text-white text-center mt-4">Topics A-Z</h2>
-{% if user.is_authenticated %}
-<a href="{% url 'topic_new' %}" class="btn btn-primary mb-2">Add new topic</a></li>
-{% endif %}
+<div class="row">
+    <div class="col">
+        {% if user.is_authenticated %}
+        <a href="{% url 'topic_new' %}" class="btn btn-primary mb-2">Add new topic</a></li>
+        {% endif %}
+    </div>
+
+
+    <div class="col-2 md-form active-cyan active-cyan-2 w-40">
+        <input class="form-control" type="text" placeholder="Search topics..." aria-label="Search">
+    </div>
+</div>
 <div class="row">
     {% for topic in all_topics_list|dictsort:"name.lower" %}
     <div class="col-6 pt-3 ">

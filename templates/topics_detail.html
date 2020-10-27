@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ topic.name }}{% endblock title %}
 {% block content %}
-<h3 class="text-center text-white">{{ topic }}</h3>
+<h3 class="text-center text-white mt-3">{{ topic }}</h3>
 {% if user.is_authenticated %}
 <a href="{% url 'discussion_new' %}" class=" mb-4 btn btn-primary btn-sm">Add new {{ topic }} discussion</a>
 </li>
