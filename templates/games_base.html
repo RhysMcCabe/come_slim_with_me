@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-white text-center mt-4">Welcome to the gaming corner!</h2>
+<h4 class="text-muted text-center mt-4">Here you will find some fun retro games to help pass the time. Enjoy!</h4>
+<div class='container'>
+    <div class ='row'>
+        <div class= 'col-4'>
+            <div class="card h-100">
+                <img src='/static/images/snake.png' alt='snake' class='img-thumbnail m-3'>
+                <a href="{% url 'snake' %}" class="btn btn-primary p-2">Play Snake!</a>
+            </div> 
+        </div>      
+        <div class= 'col-4'>
+            <div class="card h-100">
+                <img src='/static/images/tictactoe.png' alt='tictactoe' class='img-thumbnail m-4'>
+                <a href="{% url 'tictactoe' %}" class="btn btn-primary my-1 p-2">Play Tic-Tac-Toe!</a>
+            </div>
+        </div>
+        <div class= 'col-4'> 
+            <div class="card h-100">  
+                <img src='/static/images/flipmemory.jpg' alt='flipmemory' class ='img-thumbnail'>
+                <a href="{% url 'flipmemory' %}" class="btn btn-primary p-2 my-3">Play Flip Card Memory Game!</a>
+            </div>
+        </div>     
+    </div>      
+</div>
+{% endblock content %}
