@@ -9,8 +9,10 @@
     <div class="card mb-3 pt-3">
       <h6>{{ discussion.body }}</h6>
     </div>
+    {% if user.is_authenticated and user == discussion.member %}
     <p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
         href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
+    {% endif %}
   </div>
 
 
