@@ -12,7 +12,7 @@
         <div class="card p-3 my-3 text-center ">
             <h5><a href="{{ topic.get_absolute_url }}">{{ topic.name }}</a></h5>
             <small>{{ topic.description|slice:"30" }}...</small>
-            <small>by- {{topic.member}}</small>
+            <small>by {{topic.member}} - {{ topic.get_date_created }}</small>
             <small>{% if user.is_authenticated and user == topic.member %}
                 <a class="small" href="{% url 'topic_delete' topic.pk %}">Delete</a>
                 {% endif %}</small>

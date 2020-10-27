@@ -34,13 +34,16 @@ class Discussion(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
     )
-    date = models.DateTimeField(auto_now_add=True),
+    date_created = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('discussion_list', args=[str(self.id)])
+    
+    def get_date_created(self):
+        return self.date_created.strftime('created: %d/%m/%y at %H:%M')
 
 
 class Comment(models.Model):
