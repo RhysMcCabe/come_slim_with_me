@@ -61,6 +61,15 @@ class DiscussionCreateView(CreateView):
         form.instance.member = self.request.user
         return super().form_valid(form)
 
+class DiscussionSearchResultsView(ListView):
+    model = Discussion
+    context_object_name = 'all_discussions_list'
+    template_name = 'discussion_search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('r')
+        return Discussion.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment

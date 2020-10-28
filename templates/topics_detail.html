@@ -7,7 +7,8 @@
 </div>
 {% if user.is_authenticated %}
 <a href="{% url 'discussion_new' %}" class=" mb-4 btn btn-primary btn-sm">Add new {{ topic }} discussion</a>
-</li>
+{% else %}
+<a class="text-white font-weight-bold" href="{% url 'login' %}">Log In to create a discussion!</a>
 {% endif %}
 {% for discussion in topic.discussions.all %}
 <div class="card border-primary p-1 mt-4 ">

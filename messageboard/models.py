@@ -40,7 +40,7 @@ class Discussion(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('discussion_list', args=[str(self.id)])
+        return reverse('discussion_detail', args=[str(self.id)])
     
     def get_date_created(self):
         return self.date_created.strftime('created: %d/%m/%y at %H:%M')

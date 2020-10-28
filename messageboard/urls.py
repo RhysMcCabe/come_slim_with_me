@@ -5,6 +5,7 @@ from .views import(
     DiscussionDetailView,
     DiscussionDeleteView,
     DiscussionCreateView,
+    DiscussionSearchResultsView,
     TopicListView,
     CommentCreateView,
     TopicCreateView,
@@ -25,10 +26,11 @@ urlpatterns = [
     path('discussion/<int:pk>/delete/',
          DiscussionDeleteView.as_view(), name='discussion_delete'),
     path('new/', DiscussionCreateView.as_view(), name='discussion_new'),
+    path('discussions/search/',DiscussionSearchResultsView.as_view(), name='discussion_search_results'),
     path('discussions', DiscussionListView.as_view(), name='discussion_list'),
     path('discussion/<int:pk>/',
          DiscussionDetailView.as_view(), name='discussion_detail'),
-     path('topics/search/', TopicSearchResultsView.as_view(), name='search_results'),
+     path('topics/search/', TopicSearchResultsView.as_view(), name='topic_search_results'),
     path('', TopicListView.as_view(), name='topic'),
     
 ]

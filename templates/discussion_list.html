@@ -8,9 +8,10 @@
         <a href="{% url 'discussion_new' %}" class="btn btn-primary mb-2">Add new discussion</a></li>
         {% endif %}
     </div>
-    <div class="col-3 md-form active-cyan active-cyan-2 w-40">
-        <input class="form-control" type="text" placeholder="Search discussions..." aria-label="Search">
-    </div>
+    <form class="col-2 md-form active-cyan active-cyan-2 w-40" action="{% url 'discussion_search_results' %}"
+        method="get">
+        <input name="r" class="form-control" type="text" placeholder="Search discussions" aria-label="Search">
+    </form>
 </div>
 
 
