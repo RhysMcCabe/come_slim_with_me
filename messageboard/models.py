@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from datetime import datetime
 
 
 class Topic(models.Model):
@@ -12,12 +13,16 @@ class Topic(models.Model):
     )
 
     description = models.TextField(max_length=400)
+    date_created = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('home', args=[str(self.id)])
+        return reverse('topics_detail', args=[str(self.id)])
+
+    def get_date_created(self):
+        return self.date_created.strftime('created: %d/%m/%y at %H:%M')
 
 
 class Discussion(models.Model):
@@ -29,13 +34,16 @@ class Discussion(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
     )
-    date = models.DateTimeField(auto_now_add=True),
+    date_created = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('discussion_list', args=[str(self.id)])
+        return reverse('discussion_detail', args=[str(self.id)])
+    
+    def get_date_created(self):
+        return self.date_created.strftime('created: %d/%m/%y at %H:%M')
 
 
 class Comment(models.Model):

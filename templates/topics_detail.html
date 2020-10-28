@@ -1,23 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}{{ topic.name }}{% endblock title %}
 {% block content %}
-<h3 class="text-center text-white mt-3">{{ topic }}</h3>
+<div class="text-center">
+    <h1 class="text-center text-white mt-3">{{ topic }}</h1>
+    <small class="text-white text-muted">{{ topic.get_date_created }}</small>
+</div>
 {% if user.is_authenticated %}
-<a href="{% url 'discussion_new' %}" class=" mb-4 btn btn-primary btn-sm">Add new {{ topic }} discussion</a>
-</li>
+<a href="{% url 'discussion_new' %}" class=" mb-1 btn btn-primary">Add new {{ topic }} discussion</a>
+{% else %}
+<a class="text-white font-weight-bold" href="{% url 'login' %}">Log In to create a discussion!</a>
 {% endif %}
 {% for discussion in topic.discussions.all %}
-<div class="card border-primary p-1 mt-2 ">
-    <div class="row">
+<div class="card border-primary p-1 mt-4 ">
+    <div class="row p-2">
         <div class="col">
-            <a class="h6 font-weight-bold " href="{% url 'discussion_detail' discussion.pk %}">{{ discussion }}</a>
-            <p>{{ discussion.member }}</p>
+            <a class="h4 font-weight-bold "
+                href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title|slice:"40" }}...</a>
+            <p>by {{ discussion.member }} | {{ discussion.get_date_created }}</p>
         </div>
         <div class="col">
-            <p>{{ discussion.body|slice:"25" }}.....</p>
+            <p>{{ discussion.body|slice:"60" }}.....</p>
+            <a href="{% url 'discussion_detail' discussion.pk %}">Read
+                more</a></small>
         </div>
 
     </div>
 </div>
 {% endfor %}
+<div class="card text-center mt-4 font-weight-bold bg-dark">
+    <a class="mb-1 btn btn-primary" href="{% url 'discussion_list' %}">Browse all discussions</a>
+</div>
 {% endblock content %}

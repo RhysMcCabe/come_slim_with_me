@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+
+
+
+<div class="card text-center bg-dark mt-3 border-white w-80">
+    <h4 class="text-white ">Search Results</h4>
+    {% for discussion in all_discussions_list %}
+    <div class="col-md-6 offset-md-3 ">
+        <div class="card p-3 my-3 text-center ">
+            <h5><a href="{{ topic.get_absolute_url }}">{{ discussion.title }}</a></h5>
+            <small>{{ discussion.body|slice:"30" }}...</small>
+            <small>by {{discussion.member}} - {{ discussion.get_date_created }}</small>
+            <small>{% if user.is_authenticated and user == topic.member %}
+                <a class="small" href="{% url 'discussion_delete' discussion.pk %}">Delete</a>
+                {% endif %}</small>
+        </div>
+    </div>
+    {% endfor %}
+    <a class="text-white" href="{% url 'discussion_list' %}">Browse all discussions</a>
+</div>
+
+{% endblock content %}

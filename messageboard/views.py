@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .models import Discussion, Topic, Comment
 from braces.views import SelectRelatedMixin
 from datetime import datetime
+from django.db.models import Q
 
 class DiscussionListView(ListView):
     model = Discussion
@@ -60,6 +61,15 @@ class DiscussionCreateView(CreateView):
         form.instance.member = self.request.user
         return super().form_valid(form)
 
+class DiscussionSearchResultsView(ListView):
+    model = Discussion
+    context_object_name = 'all_discussions_list'
+    template_name = 'discussion_search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('r')
+        return Discussion.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
@@ -83,7 +93,20 @@ class TopicCreateView(CreateView):
         form.instance.member = self.request.user
         return super().form_valid(form)
 
-class SearchResultsListView(ListView):
-    model = Discussion
-    context_object_name = 'all_discussions_list'
-    template_name = 'search_results.html'
+class TopicDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Topic
+    template_name = 'topic_delete.html'
+    success_url = reverse_lazy('home')
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.member == self.request.user
+
+class TopicSearchResultsView(ListView):
+    model = Topic
+    context_object_name = 'all_topics_list'
+    template_name = 'topic_search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Topic.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
