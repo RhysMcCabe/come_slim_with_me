@@ -8,8 +8,13 @@
     </h4>
     <small>{{ discussion.get_date_created }}</small>
     <div class="card mb-3 pt-3">
-      <h6>{{ discussion.body }}</h6>
+      <h6>{{ discussion.body }}</h6> 
     </div>
+    {% if discussion.image %}
+    <div class="card mb-3 pt-3">
+        <img class='imgupload' src="{{ discussion.image.url}}" alt='img_upload' style="max-height:300px">
+    </div>
+    {% endif %} 
     {% if user.is_authenticated and user == discussion.member %}
     <p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
         href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
@@ -24,6 +29,11 @@
     <p>
       <span class="font-weight-bold">{{ comment.member}} &middot;</span>
       {{ comment }}
+      {% if comment.image %}
+      <div class="card mb-3 pt-3">
+            <img class='imgupload' src="{{ comment.image.url}}" alt='img_upload' style="max-height:300px"> 
+      </div>
+      {% endif %}
     </p>
     {% endfor %}
     <a href="{% url 'discussion_comment' discussion.pk%}">Add Comment</a>

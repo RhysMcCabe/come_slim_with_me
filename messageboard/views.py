@@ -33,7 +33,7 @@ class TopicsDetailView(DetailView):
 
 class DiscussionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Discussion
-    fields = ('title', 'body',)
+    fields = ('title', 'body', 'image',)
     template_name = 'discussion_edit.html'
 
     def test_func(self):
@@ -54,7 +54,7 @@ class DiscussionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class DiscussionCreateView(CreateView):
     model = Discussion
     template_name = 'discussion_new.html'
-    fields = ('title', 'body', 'topic',)
+    fields = ('title', 'body', 'topic', 'image',)
     success_url = reverse_lazy('discussion_list')
 
     def form_valid(self, form):
@@ -74,7 +74,7 @@ class DiscussionSearchResultsView(ListView):
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
     template_name = 'discussion_comment.html'
-    fields = ('comment',)
+    fields = ('comment', 'image',)
 
     def form_valid(self, form):
         form.instance.member = self.request.user

@@ -35,6 +35,7 @@ class Discussion(models.Model):
         on_delete=models.CASCADE,
     )
     date_created = models.DateTimeField(default=datetime.now, blank=True)
+    image = models.ImageField(upload_to='imageuploads/', blank=True)
 
     def __str__(self):
         return self.title
@@ -53,6 +54,7 @@ class Comment(models.Model):
         related_name='comments'
     )
     comment = models.CharField(max_length=140)
+    image = models.ImageField(upload_to='imageuploads/', blank=True)
     member = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
