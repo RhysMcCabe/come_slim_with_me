@@ -6,6 +6,8 @@
     <div class="col">
         {% if user.is_authenticated %}
         <a href="{% url 'discussion_new' %}" class="btn btn-primary mb-2">Add new discussion</a></li>
+        {% else %}
+        <a class="text-white font-weight-bold" href="{% url 'login' %}">Log In to create a discussion!</a>
         {% endif %}
     </div>
     <form class="col-2 md-form active-cyan active-cyan-2 w-40" action="{% url 'discussion_search_results' %}"
