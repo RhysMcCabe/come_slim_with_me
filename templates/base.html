@@ -24,9 +24,12 @@
       <li class="nav-link"><a class="text-muted" href="{% url 'home' %}">Home</a></li>
       <li class="nav-link"><a class="text-muted" href="{% url 'discussion_list' %}">Discussions</a></li>
       <li class="nav-link"><a class="text-muted" href="{% url 'contactus' %}">Contact Us</a></li>
-      <li class="nav-link"><a class=" text-muted p-1" href="{% url 'games' %}">| Gaming Corner |</a>
-      </li>
+      <li class="nav-link"><a class=" text-muted p-1" href="{% url 'games' %}">| Gaming Corner |</a></li>
     </ul>
+    <form class="col-3 md-form active-cyan active-cyan-2 w-40" action="{% url 'discussion_search_results' %}"
+      method="get">
+      <input name="r" class="form-control" type="text" placeholder="Search discussions..." aria-label="Search">
+    </form>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
