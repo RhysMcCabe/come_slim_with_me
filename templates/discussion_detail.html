@@ -3,18 +3,18 @@
 {% block content %}
 <div class="card mt-4">
   <div class="discussion-entry p-3">
-    <h4>{{ discussion.title }} - <a class="h5"
+    <h4>{{ discussion.title }} - <a class="h4"
         href="{% url 'topics_detail' discussion.topic.pk %}">{{ discussion.topic.name }}</a>
     </h4>
-    <small>{{ discussion.get_date_created }}</small>
-    <div class="card mb-3 pt-3">
-      <h6>{{ discussion.body }}</h6> 
-    </div>
+    <small>{{ discussion.get_date_created }} by {{ discussion.member }}</small>
     {% if discussion.image %}
-    <div class="card mb-3 pt-3">
-        <img class='imgupload' src="{{ discussion.image.url}}" alt='img_upload' style="max-height:300px">
+    <div class="card my-3 w-50">
+      <img class='imgupload' src="{{ discussion.image.url}}" alt='img_upload' style="max-height:350px">
     </div>
-    {% endif %} 
+    {% endif %}
+    <div class=" mb-3 pt-3">
+      <h6>{{ discussion.body }}</h6>
+    </div>
     {% if user.is_authenticated and user == discussion.member %}
     <p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
         href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
@@ -30,10 +30,10 @@
       <span class="font-weight-bold">{{ comment.member}} &middot;</span>
       {{ comment }}
       {% if comment.image %}
-      <div class="card mb-3 pt-3">
-            <img class='imgupload' src="{{ comment.image.url}}" alt='img_upload' style="max-height:300px"> 
-      </div>
-      {% endif %}
+    <div class="card mb-3 pt-3">
+      <img class='imgupload' src="{{ comment.image.url}}" alt='img_upload' style="max-height:300px">
+    </div>
+    {% endif %}
     </p>
     {% endfor %}
     <a href="{% url 'discussion_comment' discussion.pk%}">Add Comment</a>

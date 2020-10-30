@@ -24,9 +24,9 @@
     <div class="col-12 pt-3 ">
         <div class=" card border-primary topics-entry ">
             <div class="card-header ">
-                <h5><a class="" href="{% url 'topics_detail' topic.pk %}">{{ topic.name }}</a></h5>
+                <h3><a class="text-dark" href="{% url 'topics_detail' topic.pk %}">{{ topic.name }}</a></h3>
                 <small class="text-muted"> Founder - {{ topic.member }}</small>
-                <p>{{ topic.description }}</p>
+                <h6 class="text-muted">{{ topic.description }}</h6>
                 <small class="text-muted">{{ topic.get_date_created }}</small>
                 {% if user.is_authenticated and user == topic.member %}
                 <a class="small" href="{% url 'topic_delete' topic.pk %}">Delete</a>

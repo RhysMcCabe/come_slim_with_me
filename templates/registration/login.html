@@ -3,8 +3,8 @@
 {% block title %}Log In{% endblock title %}
 
 {% block content %}
-<div class="text-white text-center">
-  <h3>Log In</h3>
+<div class="text-white text-center h4">
+  <h3 class="p-3">Log In</h3>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
