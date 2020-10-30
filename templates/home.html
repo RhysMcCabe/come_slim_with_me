@@ -21,7 +21,7 @@
 </div>
 <div class="row">
     {% for topic in all_topics_list|dictsort:"name.lower" %}
-    <div class="col-6 pt-3 ">
+    <div class="col-12 pt-3 ">
         <div class=" card border-primary topics-entry ">
             <div class="card-header ">
                 <h5><a class="" href="{% url 'topics_detail' topic.pk %}">{{ topic.name }}</a></h5>
