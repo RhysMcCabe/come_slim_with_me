@@ -14,7 +14,7 @@
 <div class="card border-primary p-1 mt-4 ">
     <div class="row p-2">
         <div class="col">
-            <a class="h4 font-weight-bold "
+            <a class="h4 font-weight-bold text-dark "
                 href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title|slice:"40" }}...</a>
             <p>by {{ discussion.member }} | {{ discussion.get_date_created }}</p>
         </div>

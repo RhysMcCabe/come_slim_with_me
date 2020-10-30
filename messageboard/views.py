@@ -70,6 +70,8 @@ class DiscussionSearchResultsView(ListView):
         query = self.request.GET.get('r')
         return Discussion.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
 
+        
+
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
