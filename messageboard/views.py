@@ -84,6 +84,24 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
             pk=self.kwargs['discussion_pk'])
         return super().form_valid(form)
 
+class CommentEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    fields = ('comment', 'image',)
+    template_name = 'comment_edit.html'
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.member == self.request.user
+
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = 'comment_delete.html'
+    success_url = reverse_lazy('home')
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.member == self.request.user
+
 
 class TopicCreateView(CreateView):
     model = Topic

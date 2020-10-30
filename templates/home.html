@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+</head>
 <div class="jumbotron mt-4">
     <h1 class="display-3">Welcome to the TUD-Tallaght StudentBoard!</h1>
     <p class="lead">Connect with your classmates, create discussions and reply to others!</p>
@@ -15,14 +20,14 @@
     </div>
 
 
-    <form class="col-2 md-form active-cyan active-cyan-2 w-40" action="{% url 'topic_search_results' %}" method="get">
+    <form class="col-2 md-form active-cyan active-cyan-2 w-40 " action="{% url 'topic_search_results' %}" method="get">
         <input name="q" class="form-control" type="text" placeholder="Search topics..." aria-label="Search">
     </form>
 </div>
 <div class="row">
     {% for topic in all_topics_list|dictsort:"name.lower" %}
-    <div class="col-12 pt-3 ">
-        <div class=" card border-primary topics-entry ">
+    <div class="col-12 pt-3 text-center ">
+        <div id="topic-card" class=" card border-primary topics-entry ">
             <div class="card-header ">
                 <h3><a class="text-dark" href="{% url 'topics_detail' topic.pk %}">{{ topic.name }}</a></h3>
                 <small class="text-muted"> Founder - {{ topic.member }}</small>
