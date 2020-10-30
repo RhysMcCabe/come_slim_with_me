@@ -22,13 +22,12 @@
     <div class="col-12 pt-3">
         <div class=" card p-3 discussion-entry border-primary">
             <h4><a class="text-dark"
-                    href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title|slice:"50" }}</a>
-                <small>-by {{ discussion.member }}</small></h4>
+                    href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title|slice:"50" }}</a></h4>
             <a class="h6 text-muted"
                 href="{% url 'topics_detail' discussion.topic.pk %}">{{ discussion.topic.name }}</a>
             <p>{{ discussion.body|slice:"115" }}.... <a href="{% url 'discussion_detail' discussion.pk %}">Read
                     more</a></p>
-            <small>{{ discussion.get_date_created }}</small>
+            <small>{{ discussion.get_date_created }} by {{ discussion.member }}</small>
             {% if user.is_authenticated and user == discussion.member %}
             <small><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
                     href="{% url 'discussion_delete' discussion.pk %}">Delete</a></small>
