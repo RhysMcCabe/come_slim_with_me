@@ -29,6 +29,10 @@
     <p>
       <span class="font-weight-bold">{{ comment.member}} &middot;</span>
       {{ comment }}
+      {% if user.is_authenticated and user == comment.member %}
+      <p><a href="{% url 'comment_edit' discussion.pk %}">Edit</a> | <a
+      href="{% url 'comment_delete' discussion.pk %}">Delete</a></p>
+      {% endif %}
       {% if comment.image %}
     <div class="card mb-3 w-25">
       <img class='imgupload' src="{{ comment.image.url}}" alt='img_upload' style="max-height:150px">

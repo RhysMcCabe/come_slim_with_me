@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container-fluid pl-4 mt-4">
   <div class="card p-4 w-50">
-    <h4>Editing {{ discussion.title }} in '{{ discussion.topic }}'</h4>
+    <h4>Editing comment'</h4>
     <form action="" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
