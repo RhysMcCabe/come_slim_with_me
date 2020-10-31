@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1 class="text-white text-center">Discussion</h1>
 <div class="card mt-4">
   <div class="discussion-entry p-3">
     <h4>{{ discussion.title }} - <a class="h4"
@@ -23,7 +24,7 @@
 
 
   <div class="card-footer border-dark">
-    <h6>Comments</h6>
+    <h4>Comments</h4>
     {% for comment in discussion.comments.all %}
 
     <p>
@@ -37,6 +38,10 @@
     <div class="card mb-3 w-25">
       <img class='imgupload' src="{{ comment.image.url}}" alt='img_upload' style="max-height:150px">
     </div>
+    {% endif %}
+    {% if user.is_authenticated and user == comment.member %}
+    <a href="{% url 'comment_edit' comment.pk %}">Edit &middot;</a>
+    <a href="{% url 'comment_delete' comment.pk %}">Delete</a>
     {% endif %}
     </p>
     {% endfor %}

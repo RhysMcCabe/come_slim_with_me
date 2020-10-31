@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
+<<<<<<< HEAD
   <div class="card mt-4 p-4 w-50">
     <h4>Delete</h4>
     <form action="" method="post">
@@ -9,5 +10,14 @@
       <button class="btn btn-danger ml-2" type="submit">Confirm</button>
     </form>
   </div>
+=======
+    <div class="card mt-4 p-4 w-50">
+        <h4>Delete</h4>
+        <form action="" method="post">{% csrf_token %}
+            <p>Are you sure you want to delete "{{ comment }}"?</p>
+            <button class="btn btn-danger ml-2" type="submit">Confirm</button>
+        </form>
+    </div>
+>>>>>>> 7a31b51dc0f5da94b437084dab3a55889711a00d
 </div>
 {% endblock content %}
