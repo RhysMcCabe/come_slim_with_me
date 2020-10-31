@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{ category.name }}{% endblock title %}
+{% block content %}
+<div class="text-center">
+    <h1 class="text-center text-white mt-3">{{ category }} To-Dos</h1>
+    <small class="text-white text-muted">{{ category.get_date_created }}</small>
+</div>
+{% if user.is_authenticated %}
+<a href="{% url 'todo_new' %}" class=" mb-1 btn btn-primary">Add new {{ category }} to-do</a>
+{% endif %}
+{% for todo in category.todos.all %}
+<div class="card border-primary p-1 mt-4 ">
+    <div class="row p-2">
+        <div class="col">
+            <a class="h4 font-weight-bold text-dark "
+                href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a>
+        </div>
+        <div class="col">
+            <p>{{ todo.description }}</p>
+            <a href="{% url 'todo_detail' todo.pk %}">Read
+                more</a></small>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+<div class="card text-center mt-4 font-weight-bold bg-dark">
+    <a class="mb-1 btn btn-primary" href="{% url 'todo_list' %}">Browse all To-Dos</a>
+</div>
+{% endblock content %}

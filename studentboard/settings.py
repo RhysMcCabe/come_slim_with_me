@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'messageboard',
     'accounts',
     'pages',
+    'todo',
     #3rd party
     'crispy_forms',
 ]

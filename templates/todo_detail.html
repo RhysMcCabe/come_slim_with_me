@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-white text-center">To-Do</h1>
+<div class="card mt-4">
+  <div class="todo-entry p-3">
+    <h4>{{ todo.title }} - <a class="h4"
+        href="{% url 'category_detail' todo.category.pk %}">{{ todo.category.name }}</a>
+    </h4>
+    <div class=" mb-3 pt-3">
+      <h6>{{ todo.description }}</h6>
+    </div>
+    <p><a href="{% url 'todo_edit' todo.pk %}">Edit</a> | <a
+        href="{% url 'todo_delete' todo.pk %}">Delete</a></p>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-white text-center mt-4">Latest To-Dos</h2>
+<div class="row">
+    <div class="col">
+        {% if user.is_authenticated %}
+        <a href="{% url 'todo_new' %}" class="btn btn-primary mb-2">Add new To-Do</a></li>
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    {% for todo in todo_list reversed  %}
+    {% if user.is_authenticated and user == todo.member %}
+    <div class="col-12 pt-3">
+        <div class="card p-3 todo-entry border-primary">
+            {% if todo.completed == True %}
+            <div class="card bg-success todo-entry border-primary">
+                <p class='text-white text-center p-1'>This To-Do has been completed!</p>
+            </div>
+            {% endif %}
+            <h4><a class="text-dark"
+                    href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a></h4>
+            <a class="h6 text-muted"
+                href="{% url 'category_detail' todo.category.pk %}">{{ todo.category.name }}</a>
+            <p>{{ todo.description}} <a href="{% url 'todo_detail' todo.pk %}"></a></p>
+            <small><a href="{% url 'todo_edit' todo.pk %}">Edit</a> | <a
+                    href="{% url 'todo_delete' todo.pk %}">Delete</a></small>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

@@ -130,24 +130,3 @@ class TopicSearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Topic.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
-
-
-class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Comment
-    fields = ('comment', 'image',)
-    template_name = 'comment_edit.html'
-
-    def test_func(self):
-        obj = self.get_object()
-        return obj.member == self.request.user
-    
-
-
-class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Comment
-    template_name = 'comment_delete.html'
-    success_url = reverse_lazy('discussion_list')
-
-    def test_func(self):
-        obj = self.get_object()
-        return obj.member == self.request.user
