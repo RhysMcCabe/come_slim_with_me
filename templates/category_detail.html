@@ -10,6 +10,11 @@
 {% endif %}
 {% for todo in category.todos.all %}
 <div class="card border-primary p-1 mt-4 ">
+    {% if todo.completed == True %}
+            <div class="card bg-success todo-entry border-primary">
+                <p class='text-white text-center p-1'>This To-Do has been completed!</p>
+            </div>
+    {% endif %}
     <div class="row p-2">
         <div class="col">
             <a class="h4 font-weight-bold text-dark "
