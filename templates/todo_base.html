@@ -2,13 +2,14 @@
 {% block content %}
 
 <div class="jumbotron mt-4">
-    <h1 class="display-3">My To-Do List!</h1>
-    <p class="lead">Life can be fun, but busy. Keep your life organised and on top of your tasks with our handle to-do list app!</p>
+    <h1 class="display-3 text-center">My To-Do List!</h1>
+    <p class="lead text-center">Life can be fun, but busy. Keep your life organised and on top of your tasks with our handy to-do list app!</p>
 </div>
 <h2 class="text-white text-center mt-5">Categories A-Z</h2>
 <div class="row">
     <div class="col">
         {% if user.is_authenticated %}
+        <!-- If user is logged in, they have the option to create a new category -->
         <a href="{% url 'category_new' %}" class="btn btn-primary mb-2">Add new category</a></li>
         {% endif %}
     </div>
@@ -16,6 +17,7 @@
 <div class="row">
     {% for category in all_categories_list|dictsort:"name.lower" %}
     {% if user.is_authenticated and user == category.member %}
+    <!-- If the user is logged in and they are the person who created the to-do, they will see the to-dos.-->
     <div class="col-12 py-2 text-center ">
         <div id="category-card" class=" card border-primary topics-entry ">
             <div class="card-header ">
@@ -27,6 +29,7 @@
     {% endif %}
     {% endfor %}
 {% if not user.is_authenticated %}    
+<!-- If the user not logged in, they will be prompted to log in to start creating their to-dos -->
 <a class="text-white font-weight-bold" href="{% url 'login' %}">Log In to create your to-do list!</a>
 {% endif %}
 </div>

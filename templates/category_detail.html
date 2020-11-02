@@ -5,12 +5,15 @@
     <h1 class="text-center text-white mt-3">{{ category }} To-Dos</h1>
     <small class="text-white text-muted">{{ category.get_date_created }}</small>
 </div>
-{% if user.is_authenticated %}
+{% if user.is_authenticated %} 
+<!-- If user is logged in, they have an option to add a new to-do -->
 <a href="{% url 'todo_new' %}" class=" mb-1 btn btn-primary">Add new {{ category }} to-do</a>
 {% endif %}
 {% for todo in category.todos.all %}
+<!-- for all to-dos within each category -->
 <div class="card border-primary p-1 mt-4 ">
     {% if todo.completed == True %}
+    <!-- If the to-do has been marked as completed, show the text in a green banner -->
             <div class="card bg-success todo-entry border-primary">
                 <p class='text-white text-center p-1'>This To-Do has been completed!</p>
             </div>
@@ -25,10 +28,12 @@
             <a href="{% url 'todo_detail' todo.pk %}">Read
                 more</a></small>
         </div>
+        <small>{{ todo.created }}</small>
 
     </div>
 </div>
 {% endfor %}
+<!-- Gives option to browse all to-dos from all categories -->
 <div class="card text-center mt-4 font-weight-bold bg-dark">
     <a class="mb-1 btn btn-primary" href="{% url 'todo_list' %}">Browse all To-Dos</a>
 </div>

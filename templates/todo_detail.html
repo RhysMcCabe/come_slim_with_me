@@ -10,6 +10,7 @@
     <div class=" mb-3 pt-3">
       <h6>{{ todo.description }}</h6>
     </div>
+    <small>{{ todo.created }}</small>
     <p><a href="{% url 'todo_edit' todo.pk %}">Edit</a> | <a
         href="{% url 'todo_delete' todo.pk %}">Delete</a></p>
   </div>
