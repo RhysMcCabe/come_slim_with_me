@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}{{ category.name }}{% endblock title %}
 {% block content %}
+<style>
+    #todo-card:hover{
+background-color: rgb(184, 184, 184);
+}
+</style>
 <div class="text-center">
     <h1 class="text-center text-white mt-3">{{ category }} To-Dos</h1>
     <small class="text-white text-muted">{{ category.get_date_created }}</small>
@@ -11,7 +16,7 @@
 {% endif %}
 {% for todo in category.todos.all %}
 <!-- for all to-dos within each category -->
-<div class="card border-primary p-1 mt-4 ">
+<div class="card border-primary p-1 mt-4 " id='todo-card'>
     {% if todo.completed == True %}
     <!-- If the to-do has been marked as completed, show the text in a green banner -->
             <div class="card bg-success todo-entry border-primary">
