@@ -15,6 +15,7 @@ background-color: rgb(184, 184, 184);
 <a href="{% url 'todo_new' %}" class=" mb-1 btn btn-primary">Add new {{ category }} to-do</a>
 {% endif %}
 {% for todo in category.todos.all %}
+{% if user.is_authenticated and user == todo.member %} 
 <!-- for all to-dos within each category -->
 <div class="card border-primary p-1 mt-4 " id='todo-card'>
     {% if todo.completed == True %}
@@ -37,6 +38,7 @@ background-color: rgb(184, 184, 184);
 
     </div>
 </div>
+{% endif %}
 {% endfor %}
 <!-- Gives option to browse all to-dos from all categories -->
 <div class="card text-center mt-4 font-weight-bold bg-dark">

@@ -20,7 +20,7 @@ background-color: rgb(184, 184, 184);
     <!-- Shows all to-dos with the most recent first -->
     {% if user.is_authenticated and user == todo.member %}
     <!-- If the user is logged in and they are the person who created the to-do, they will see the to-dos. If not, nothing will show -->
-    <div class="col-12 pt-3">
+    <div class="col-12 p-2">
         <div class="card p-3 todo-entry border-primary" id='todo-card'>
             {% if todo.completed == True %}
             <!-- If the to-do has been marked as completed, show the text in a green banner -->
