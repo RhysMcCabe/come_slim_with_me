@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-    #category-card:hover{
-background-color: rgb(184, 184, 184);
-}
+    #category-card:hover {
+        background-color: rgb(230, 246, 255);
+    }
 </style>
 
 <div class="jumbotron mt-4">
     <h1 class="display-3 text-center">My To-Do List!</h1>
-    <p class="lead text-center">Life can be fun, but busy. Keep your life organised and on top of your tasks with our handy to-do list app!</p>
+    <p class="lead text-center">Life can be fun, but busy. Keep your life organised and on top of your tasks with our
+        handy to-do list app!</p>
 </div>
 <h2 class="text-white text-center mt-5">Categories A-Z</h2>
 <div class="row">
@@ -33,9 +34,9 @@ background-color: rgb(184, 184, 184);
     </div>
     {% endif %}
     {% endfor %}
-{% if not user.is_authenticated %}    
-<!-- If the user not logged in, they will be prompted to log in to start creating their to-dos -->
-<a class="text-white font-weight-bold" href="{% url 'login' %}">Log In to create your to-do list!</a>
-{% endif %}
+    {% if not user.is_authenticated %}
+    <!-- If the user not logged in, they will be prompted to log in to start creating their to-dos -->
+    <a class="text-white font-weight-bold" href="{% url 'login' %}">Log In to create your to-do list!</a>
+    {% endif %}
 </div>
 {% endblock content %}
