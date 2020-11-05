@@ -3,6 +3,6 @@ superuser:  laurenm
 
 
 install:
--pillow
--crispyforms
--braces
+{python -m pip install Pillow}
+{pip install django-crispy-forms}
+{python -m pip install braces}
