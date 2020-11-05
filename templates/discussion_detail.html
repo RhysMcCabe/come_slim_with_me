@@ -1,3 +1,4 @@
+<!--Discussion detail page-->
 {% extends 'base.html' %}
 
 {% block content %}
@@ -17,6 +18,7 @@
       <h6>{{ discussion.body }}</h6>
     </div>
     {% if user.is_authenticated and user == discussion.member %}
+    <!--Only showing option to edit / delete if the user is the author and logged in-->
     <p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
         href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
     {% endif %}
@@ -26,6 +28,7 @@
   <div class="card-footer border-dark">
     <h4>Comments</h4>
     {% for comment in discussion.comments.all %}
+    <!--Showing all comments assocaited with the discussion-->
 
     <p>
       <span class="font-weight-bold">{{ comment.member}} &middot;</span>
@@ -36,6 +39,7 @@
     </div>
     {% endif %}
     {% if user.is_authenticated and user == comment.member %}
+    <!--Only showing option to edit / delete if the user is the author and logged in-->
     <a href="{% url 'comment_edit' comment.pk %}">Edit &middot;</a>
     <a href="{% url 'comment_delete' comment.pk %}">Delete</a>
     {% endif %}

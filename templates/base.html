@@ -27,6 +27,7 @@
       <li class="nav-link"><a class="text-muted" href="{% url 'contactus' %}">Contact Us</a></li>
       <li class="nav-link"><a class="text-muted" href="{% url 'games' %}">| Games Zone |</a></li>
     </ul>
+    <!--Taking input from the user to search database-->
     <form class="col-3 md-form active-cyan active-cyan-2 w-40" action="{% url 'discussion_search_results' %}"
       method="get">
       <input name="r" class="form-control" type="text" placeholder="Search discussions..." aria-label="Search">
@@ -39,7 +40,7 @@
       {% if user.is_authenticated %}
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle h4" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             {{ user.username }}
           </a>

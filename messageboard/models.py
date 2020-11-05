@@ -4,7 +4,8 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from datetime import datetime
 
-
+#Topic model :  Each discussion is associated with a topic
+#               A topic can have many discussions
 class Topic(models.Model):
     name = models.CharField(max_length=140)
     member = models.ForeignKey(
@@ -24,7 +25,7 @@ class Topic(models.Model):
     def get_date_created(self):
         return self.date_created.strftime('created: %d/%m/%y at %H:%M')
 
-
+#Discussion Model : A discussion can have only one topic
 class Discussion(models.Model):
     topic = models.ForeignKey(
         Topic, related_name="discussions", on_delete=models.CASCADE)
@@ -46,7 +47,8 @@ class Discussion(models.Model):
     def get_date_created(self):
         return self.date_created.strftime('created: %d/%m/%y at %H:%M')
 
-
+#Comment model :    A comment is associated with one discussion
+#                   A discussion can have multiple comments
 class Comment(models.Model):
     discussion = models.ForeignKey(
         Discussion,
