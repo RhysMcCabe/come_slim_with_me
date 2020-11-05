@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+ 
+    .card{
+        position: absolute;
+        margin-left: 16em;
+    
+    }
+
+    .contactus-info{
+        margin-left: 5em;
+    }
+</style>
 
 <div class="contactus w-60">
     <h2 class="text-white text-center m-2">Contact Us!</h2>
@@ -11,10 +23,10 @@
 </section>
 
 
-<section class="form card p-3 w-75 mb-4 font-weight-bold">
+<section class="form card p-3 mb-4 border border-primary bg-light font-weight-bold">
     <form name="Contact Us" onsubmit="return validateForm();">
         <fieldset>
-            <legend> Personal Details</legend>
+            <legend class="text-primary"> Personal Details</legend>
             <p><label for="Firstname">First Name: </label>
                 <input name="Firstname" type="text" size="40" maxlength="20" /></p>
 
@@ -31,7 +43,7 @@
 
             <p><textarea name="Comment" cols="70" rows="15" id="Comment"></textarea></p>
 
-            <button class="btn btn-primary center"  type="submit">Submit</button>
+            <button class="btn btn-primary"  type="submit">Submit</button>
         </fieldset>
     </form>
 </section>
