@@ -6,3 +6,4 @@ install:
 -pillow
 -crispyforms
 -bootstrap4
+-braces
