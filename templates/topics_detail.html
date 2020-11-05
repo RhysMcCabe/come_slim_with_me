@@ -1,3 +1,4 @@
+<!--Shows all discussions in selected topic organised by date (newest first)-->
 {% extends 'base.html' %}
 {% block title %}{{ topic.name }}{% endblock title %}
 {% block content %}
@@ -6,6 +7,7 @@
     <small class="text-white text-muted">{{ topic.get_date_created }}</small>
 </div>
 {% if user.is_authenticated %}
+<!--Only allows user to create a new topic if they are logged in-->
 <a href="{% url 'discussion_new' %}" class=" mb-1 btn btn-primary">Add new {{ topic }} discussion</a>
 {% else %}
 <a class="text-white font-weight-bold" href="{% url 'login' %}">Log In to create a discussion!</a>
@@ -16,10 +18,12 @@
         <div class="col">
             <a class="h4 font-weight-bold text-dark "
                 href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title|slice:"40" }}...</a>
+            <!--Only showing the first 40 characters of the title to avoid card sizes expanding-->
             <p>by {{ discussion.member }} | {{ discussion.get_date_created }}</p>
         </div>
         <div class="col">
             <p>{{ discussion.body|slice:"60" }}.....</p>
+            <!--Slicing again to avoid spilling or cards expanding-->
             <a href="{% url 'discussion_detail' discussion.pk %}">Read
                 more</a></small>
         </div>
