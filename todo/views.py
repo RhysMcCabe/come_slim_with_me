@@ -23,7 +23,7 @@ class CategoryDetailView(DetailView):
 class CategoryCreateView(CreateView):
     model = Category
     template_name = 'category_new.html'
-    fields = ('name', 'member')
+    fields = ('name',)
     success_url = reverse_lazy('category')
 
     def form_valid(self, form):
@@ -81,3 +81,8 @@ class TodoCreateView(CreateView):
     def form_valid(self, form):
         form.instance.member = self.request.user
         return super().form_valid(form)
+
+    def get_form(self, *args, **kwargs):
+        form = super(TodoCreateView, self).get_form(*args, **kwargs)
+        form.fields['category'].queryset = Category.objects.filter(member=self.request.user) 
+        return form
