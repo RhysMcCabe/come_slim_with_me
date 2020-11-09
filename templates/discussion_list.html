@@ -10,7 +10,7 @@
         <a class="text-white font-weight-bold" href="{% url 'login' %}">Log In to create a discussion!</a>
         {% endif %}
     </div>
-    <form class="col-2 md-form active-cyan active-cyan-2 w-40" action="{% url 'discussion_search_results' %}"
+    <form class="col-4 md-form active-cyan active-cyan-2 w-60" action="{% url 'discussion_search_results' %}"
         method="get">
         <input name="r" class="form-control" type="text" placeholder="Search discussions" aria-label="Search">
     </form>

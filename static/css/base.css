@@ -1,7 +1,3 @@
-nav{
-    background-color:rgb(4, 76, 115);
-}
-
-nav img {
-    width: 7%;
+#logo img{
+    display: none;
 }
