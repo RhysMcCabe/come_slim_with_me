@@ -25,4 +25,6 @@ urlpatterns = [
     path('', include('messageboard.urls')),
     path('', include('todo.urls')),
     path('', include('pages.urls')),
+    path('shop/', include('shop.urls')),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

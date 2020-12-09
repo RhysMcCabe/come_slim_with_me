@@ -1,0 +1,22 @@
+<!-- templates/home.html -->
+{% extends 'shopBase.html' %}
+{% block content %}
+
+<div class="row mx-auto">
+    {% for product in products %}
+    <div class="my_bottom_margin col-9 col-lg-3 col-sm-12 col-md-4 p-4">
+        <div class="card text-center">
+            <a href="#"><img class="" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"></a>
+            <div class="card-body">
+                <h4>{{product.name}}</h4>
+                <p>€{{product.price}}</p>
+                <p>{{product.description}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock content %}
