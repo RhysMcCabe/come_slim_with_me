@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #3rd party
     'crispy_forms',
     'shop',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +63,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [str(BASE_DIR.joinpath('templates')),
-                str(BASE_DIR.joinpath('shop','templates'))],
+                str(BASE_DIR.joinpath('shop','templates')),
+                str(BASE_DIR.joinpath('cart','templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.counter',
             ],
         },
     },
@@ -139,3 +142,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MEDIA_URL = '/media/'
 MEIDA_ROOT = str(BASE_DIR.joinpath('media'))
+
+STRIPE_SECRET_KEY = 'sk_test_51Hvl48F7rlc7ohYGZU92dqWE6ZpsheYUs24CF7QVBJFjKxvKV9Z0pjZ8FRReUYwrX1DnntINFvsybe5HFe8jthii00Rl93oBrx'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51Hvl48F7rlc7ohYGtCPRAkf9xPWQrlITVZgTYvRUWtrcTZeUanKN2I8VDjvT3EPVQMR2yX8qA98szmHs95LfRN6300sQPuF45J'

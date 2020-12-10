@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Product
 from django.db.models import Count
+from django.views.generic import DetailView
 
 def product_list(request, category_id=None):
     category = None

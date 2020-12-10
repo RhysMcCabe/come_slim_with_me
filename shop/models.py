@@ -14,7 +14,7 @@ class Product(models.Model):
     stock = models.IntegerField()
     color = models.CharField(max_length=20, blank=True)
     image_thumbnail = ImageSpecField(source='image', 
-                                        processors=[ResizeToFill(200, 200)], 
+                                        processors=[ResizeToFill(280, 230)], 
                                         format='JPEG', 
                                         options={'quality': 200})
 
