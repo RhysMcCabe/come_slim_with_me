@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'shop',
     'cart',
+    'order',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +66,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [str(BASE_DIR.joinpath('templates')),
                 str(BASE_DIR.joinpath('shop','templates')),
-                str(BASE_DIR.joinpath('cart','templates'))],
+                str(BASE_DIR.joinpath('cart','templates')),
+                str(BASE_DIR.joinpath('order','templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
