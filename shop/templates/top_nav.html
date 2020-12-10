@@ -7,7 +7,7 @@
                 aria-haspopup="true" aria-expanded="false">{{ user.username }} 
 				<i class="fas fa-user-circle"></i></a>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a href="{% url 'order:order_history' %}" class="dropdown-item">Order History</a>
+					<a class="dropdown-item" href="{% url 'order:order_history' %}">Order History</a>
 				</div>
 			</li>
 			<li>
@@ -20,8 +20,12 @@
 			<li>
 				<a href="{% url 'login' %}">Sign In <i class="fas fa-sign-in-alt"></i></a>
 			</li>
-			{% endif %}
-		</ul>
+            {% endif %}
+            <li>
+                <a href="{% url 'cart:cart_detail' %}"><i
+                    class="fas fa-shopping-cart"></i>({{item_count}})</a>
+            </li>
+        </ul>
 		
 	</div>
 </div>
