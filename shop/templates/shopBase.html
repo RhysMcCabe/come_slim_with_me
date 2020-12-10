@@ -27,7 +27,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav center ml-auto mr-auto h5 ">
+            <ul class=" nav navbar-nav center ml-auto mr-auto h5 ">
                 {% for c in countcat %}
                 {% if c.name != "Men's" %}
                 {% if c.name != "Ladies" %}
@@ -53,25 +53,25 @@
                     <a class="nav-item nav-link h5" href="{% url 'cart:cart_detail' %}"><i
                             class="fas fa-shopping-cart"></i>({{item_count}})</a>
                 </li>
-
-                <li class="nav-item  ml-5">
-                    {% if user.is_authenticated %}
-                    <button id="user-dd-nav" type="button"
-                        class=" text-dark font-weight-bold btn btn-muted dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown ml-5">
+                    <button type="button" class=" text-dark font-weight-bold btn btn-muted dropdown-toggle"
+                        data-toggle="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                         {{ user.username }}
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu text-dark">
                         <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                         <a class="dropdown-item" href="{% url 'password_change'%}">Change Password</a>
                     </div>
-                    {% else %}
-                    <div class="reg-btn-nav py-3">
-                        <a class="btn btn-primary font-weight-bold" href="{% url 'login' %}">Log In</a>
-                        <a class="btn font-weight-bold text-dark" href="{% url 'signup'%}">Signup</a>
-                    </div>
-                    {% endif %}
                 </li>
+                {% else %}
+                <div class="reg-btn-nav py-3">
+                    <a class="btn btn-primary font-weight-bold" href="{% url 'login' %}">Log In</a>
+                    <a class="btn font-weight-bold text-dark" href="{% url 'signup'%}">Signup</a>
+                </div>
+
+                {% endif %}
+
             </ul>
         </div>
 
