@@ -20,11 +20,6 @@
 </head>
 
 <body>
-    <div class="jumbotron text-center">
-        <h1 class="display-4">TUD-Tallaght Merch Store!</h1>
-        <p>Introducing our new 2020 collection of TUD-Tallaght merchandise! </p>
-        <p>Check out some of our other products also!</p>
-    </div>
     <nav class="nav nav-pills nav-justified h5 p-4">
         {% for c in countcat %}
         {% if c.name != "Men's" %}
@@ -50,9 +45,3 @@
 
 {%block content%}
 {%endblock%}
-<div class="text-center">
-    <footer>
-        <a href="{% url 'home' %}">Back to StudentBoard</a>
-        <p class="text-center">&copy; TUD Merch. All Rights Reserved.</p>
-    </footer>
-</div>
