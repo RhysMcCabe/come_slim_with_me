@@ -27,64 +27,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <nav class="navbar navbar-expand-lg static-top">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class=" nav navbar-nav center ml-auto mr-auto h5 ">
-                {% for c in countcat %}
-                {% if c.name != "Men's" %}
-                {% if c.name != "Ladies" %}
-                <li class="nav-item pr-5">
-                    <a class="nav-item nav-link" href="{{ c.get_absolute_url }}">{{c.name}}</a>
-                </li>
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-                {% for c in countcat %}
-                {% if c.name == "Men's" %}
-                <li class="nav-item pl-4">
-                    <a class="nav-item nav-link disabled" href="{{ c.get_absolute_url }}">{{c.name}}</a>
-                </li>
-                {% endif %}
-                {% if c.name == "Ladies" %}
-                <li class="nav-item pr-4">
-                    <a class="nav-item nav-link disabled" href="{{ c.get_absolute_url }}">{{c.name}}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-                <li class="nav-item ml-5 ">
-                    <a class="nav-item nav-link h5" href="{% url 'cart:cart_detail' %}"><i
-                            class="fas fa-shopping-cart"></i>({{item_count}})</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown ml-5">
-                    <button type="button" class=" text-dark font-weight-bold btn btn-muted dropdown-toggle"
-                        data-toggle="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                        {{ user.username }}
-                    </button>
-                    <div class="dropdown-menu text-dark">
-                        <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-                        <a class="dropdown-item" href="{% url 'password_change'%}">Change Password</a>
-                    </div>
-                </li>
-                {% else %}
-                <div class="reg-btn-nav py-3">
-                    <a class="btn btn-primary font-weight-bold" href="{% url 'login' %}">Log In</a>
-                    <a class="btn font-weight-bold text-dark" href="{% url 'signup'%}">Signup</a>
-                </div>
-
-                {% endif %}
-
-            </ul>
-        </div>
-
-        <div>
-=======
     <div class='container-fluid bg-light navbar-fixed-top my_top_navbar_div'>
         {% include 'top_nav.html' %}
     </div>
@@ -104,7 +46,6 @@
         <a class="nav-item nav-link disabled" href="{{ c.get_absolute_url }}">{{c.name}}</a>
         {% endif %}
         {% endfor %}
->>>>>>> Lauren
 
     </nav>
 
