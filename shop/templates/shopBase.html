@@ -20,6 +20,7 @@
 </head>
 
 <body>
+
     <nav class="nav nav-pills nav-justified h5 p-4">
         {% for c in countcat %}
         {% if c.name != "Men's" %}
@@ -37,7 +38,7 @@
         {% endif %}
         {% endfor %}
         <a class="nav-item nav-link h4" href="{% url 'cart:cart_detail' %}"><i
-                class="fas fa-shopping-cart"></i>({{item_count}})</a>
+                class="fas fa-shopping-cart"></i>({{item_count}}) {{user.username}}</a>
     </nav>
 </body>
 
