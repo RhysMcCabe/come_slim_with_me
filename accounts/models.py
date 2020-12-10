@@ -3,4 +3,5 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True)
+    birthday = models.DateField(auto_now=False, null=True, blank=True)
     

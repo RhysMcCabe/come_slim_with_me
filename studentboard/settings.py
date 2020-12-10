@@ -41,12 +41,13 @@ INSTALLED_APPS = [
     'accounts',
     'pages',
     'todo',
-    #3rd party
-    'crispy_forms',
     'shop',
     'cart',
     'order',
     'stripe',
+    'vouchers',
+    #3rd party
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
