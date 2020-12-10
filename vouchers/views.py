@@ -21,3 +21,5 @@ def voucher_apply(request):
         except Voucher.DoesNotExist:
             request.session['voucher_id'] = None
     return redirect('cart:cart_detail')
+
+    

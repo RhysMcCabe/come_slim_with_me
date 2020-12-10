@@ -4,7 +4,7 @@
 This is the shopping cart page. Proceed to review your items and place the order.
 {% endblock %}
 {% block title %}
-Cart - Perfect Cushion Store
+Cart - TUD Tallaght Merch
 {% endblock %}
 {% block content %}
 {% if not cart_items %}
@@ -31,59 +31,52 @@ Cart - Perfect Cushion Store
     </div>
 </div>
 <div class="row mx-auto">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center p-4">
-        <table class="table my_custom_table w-75">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table my_custom_table">
             <thead class="my_custom_thead">
                 <tr>
                     <th colspan="5">
                         Your items
                     </th>
                 </tr>
-
+                
             </thead>
             <tbody>
                 {% for cart_item in cart_items %}
-                <tr>
-                    <td>
-                        <a href="{{cart_item.product.get_url}}"><img width="250" src="{{cart_item.product.image.url}}"
-                                alt="" class="float-left rounded custom_image"></a>
-                    </td>
-                    <td class="text-left">
-                        {{cart_item.product.name}}
-                        <br>
-                        Unit Price: €{{cart_item.product.price}}
-                        <br>
-                        Qty: {{cart_item.quantity}} x €{{cart_item.product.price}}
-                    </td>
-                    <td>
-                        Sub-total:
-                        €{{cart_item.sub_total}}
-                    </td>
-                    {% if cart_item.quantity < cart_item.product.stock %}
-                    <td>
-                        <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i
-                                class="fas fa-plus-circle custom_icon"></i></a>&nbsp;
-                        <a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i
-                                class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
-                        <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i
-                                class="fas fa-trash-alt custom_icon"></i></a>
-                    </td>
-                    {% else %}
-                    <td>
-                        &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i
-                                class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
-                        <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i
-                                class="fas fa-trash-alt custom_icon"></i></a>
-                    </td>
-                    <td></td>
-                    {% endif %}
-                </tr>
+                    <tr>
+                        <td>
+                            <a href="{{cart_item.product.get_url}}"><img src="{{cart_item.product.image.url}}" alt="" class="float-left rounded custom_image"></a>
+                        </td>
+                        <td class="text-left">
+                            {{cart_item.product.name}}
+                            <br>
+                            Unit Price: €{{cart_item.product.price}}
+                            <br>
+                            Qty: {{cart_item.quantity}} x €{{cart_item.product.price}}
+                        </td>
+                        <td>
+                            €{{cart_item.sub_total}}
+                        </td>
+                        {% if cart_item.quantity < cart_item.product.stock %}
+                            <td>
+                                <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i class="fas fa-plus-circle custom_icon"></i></a>&nbsp;
+                                <a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                                <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+                            </td>
+                        {% else %}
+                            <td>
+                                &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                                <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+                            </td>
+                            <td></td>
+                        {% endif %}
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
-
+        
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center p-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
         <table class="table my_custom_table">
             <thead class="my_custom_thead">
                 <tr>
@@ -93,18 +86,50 @@ Cart - Perfect Cushion Store
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        Please review your shopping cart items before proceeding with the order payment.
-                    </td>
+                <td>
+                    Please review your shopping cart items before proceeding with the order payment.
+                </td>
                 </tr>
-                <tr>
-                    <td class="text-center h5">
-                        Your total is: <strong>€{{ total }}</strong>
-                    </td>
-                </tr>
+                {% if voucher %}
+                    <tr class="subtotal">
+                    <td>Total:</td>
+                    <td colspan="4"></td>
+                    <td class="num">€{{ total|floatformat:"2" }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                        "{{ voucher.code }}" voucher
+                        ({{ voucher.discount }}% off)
+                        </td>
+                        <td colspan="4"></td>
+                        <td class="num neg">
+                        - €{{ discount|floatformat:"2" }}
+                        </td>
+                    </tr>
+                    <tr class="total">
+                    <td>Total</td>
+                        <td colspan="4"></td>
+                        <td class="num">
+                            €{{ new_total|floatformat:"2" }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="total">
+                        <td>Total</td>
+                        <td colspan="4"></td>
+                        <td class="num">
+                            €{{ total|floatformat:"2" }}
+                        </td>
+                    </tr>
+                {% endif %}
             </tbody>
         </table>
+        <p>Apply a voucher:</p>
+        <form action="{% url 'vouchers:apply' %}" method="post">
+            {{ voucher_apply_form }}
+            <input type="submit" value="Apply">
+            {% csrf_token %}
+        </form>
         <div class="mx-auto  p-4">
             <form action="" method="POST">
                 {% csrf_token %}
@@ -115,8 +140,7 @@ Cart - Perfect Cushion Store
                     </script>
             </form>
 
-            <a href="{% url 'products' %}" class=" btn btn-secondary btn-block my_custom_button">Continue
-                Shopping</a>
+            <a href="{% url 'products' %}" class=" btn btn-secondary btn-block my_custom_button">Continue Shopping</a>
         </div>
     </div>
 </div>
