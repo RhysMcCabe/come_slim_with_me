@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/discussion_list.css' %}">
+</head>
 <h2 class="text-white text-center mt-4">Latest Discussions</h2>
 <div class="row">
     <div class="col">
@@ -20,35 +24,40 @@
 <div class="row">
     {% for discussion in all_discussions_list reversed  %}
     <div class="col-12 pt-3">
-        <div class=" card p-3 discussion-entry border-primary">
-            <h4><a class="text-dark"
-                    href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title|slice:"50" }}</a></h4>
-            <a class="h6 text-muted"
-                href="{% url 'topics_detail' discussion.topic.pk %}">{{ discussion.topic.name }}</a>
-            <p>{{ discussion.body|slice:"115" }}.... <a href="{% url 'discussion_detail' discussion.pk %}">Read
-                    more</a></p>
-            <small>{{ discussion.get_date_created }} by {{ discussion.member }}</small>
-            {% if user.is_authenticated and user == discussion.member %}
-            <small><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
-                    href="{% url 'discussion_delete' discussion.pk %}">Delete</a></small>
-            {% endif %}
+        <div class=" card p-1 discussion-entry border-primary">
+            <div class="card-body">
+                <h4><a href="{% url 'discussion_detail' discussion.pk %}"
+                        class=" text-dark stretched-link">{{ discussion.title|slice:"50" }}</a></h4>
+                <p>{{ discussion.body|slice:"115" }}....</p>
+
+            </div>
+            <div class="card-footer" style="z-index: 1;">
+                <a class="h6 text-muted"
+                    href="{% url 'topics_detail' discussion.topic.pk %}">{{ discussion.topic.name }}</a>
+                <small>{{ discussion.get_date_created }} by {{ discussion.member }}</small>
+                {% if user.is_authenticated and user == discussion.member %}
+                <small><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
+                        href="{% url 'discussion_delete' discussion.pk %}">Delete</a></small>
+                {% endif %}
+            </div>
         </div>
     </div>
+
     {% endfor %}
     {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links text-white">
-                {% if page_obj.has_previous %}
-                    <a href="/discussions?page={{ page_obj.previous_page_number }}">Previous</a>
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="/discussions?page={{ page_obj.next_page_number }}">Next</a>
-                {% endif %}
+    <div class="pagination">
+        <span class="page-links text-white">
+            {% if page_obj.has_previous %}
+            <a href="/discussions?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+            <span class="page-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
             </span>
-        </div>
+            {% if page_obj.has_next %}
+            <a href="/discussions?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
+    </div>
     {% endif %}
 </div>
 
