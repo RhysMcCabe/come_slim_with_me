@@ -6,6 +6,7 @@ from .models import Discussion, Topic, Comment
 from braces.views import SelectRelatedMixin
 from datetime import datetime
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 class DiscussionListView(ListView):
     model = Discussion
@@ -13,6 +14,7 @@ class DiscussionListView(ListView):
     context_object_name = 'all_discussions_list'
     select_related = ("member", "topic")
     date_created = ("dates")
+    paginate_by = 5
 
 
 class DiscussionDetailView(DetailView):
