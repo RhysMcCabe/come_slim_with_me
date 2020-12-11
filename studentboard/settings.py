@@ -65,10 +65,12 @@ ROOT_URLCONF = 'studentboard.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR.joinpath('templates')),
+        'DIRS': [str(BASE_DIR.joinpath('accounts','templates')),
                 str(BASE_DIR.joinpath('shop','templates')),
                 str(BASE_DIR.joinpath('cart','templates')),
-                str(BASE_DIR.joinpath('order','templates'))],
+                str(BASE_DIR.joinpath('order','templates')),
+                str(BASE_DIR.joinpath('messageboard','templates')),
+                str(BASE_DIR.joinpath('todo','templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
