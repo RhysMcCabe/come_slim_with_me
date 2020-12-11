@@ -27,6 +27,7 @@ class TopicListView(ListView):
     model = Topic
     template_name = 'home.html'
     context_object_name = 'all_topics_list'
+    paginate_by = 5
 
 class TopicsDetailView(DetailView):
     model = Topic
