@@ -1,17 +1,37 @@
-<!-- templates/home.html -->
+{% load static %}
 {% block content %}
 {% include 'header.html' %}
 {% include 'shopBase.html' %}
-<div class="row mx-auto">
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+</head>
+<div class="row mx-auto pl-4">
     {% for product in products %}
-    <div class="my_bottom_margin col-9 col-lg-3 col-sm-12 col-md-4 p-4">
-        <div class="card text-center">
-            <a class="pt-2" href="#"><img class="" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"></a>
-            <div class="card-body">
-                <h5>{{product.name}}</h5>
-                <p>€{{product.price}}</p>
-                <p>{{product.description}}</p>
-                <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id %}">Add to cart</a>
+    <div class=" col-9 col-lg-3 col-sm-12 col-md-4 py-4">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="mt-2" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"
+                        style="width:auto;height:auto;">
+                    <h5>{{product.name}}</h5>
+                    <p>€{{product.price}}</p>
+                </div>
+                <div class="flip-card-back text-center pt-4">
+                    <div class="">
+                        <img class="mb-2" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"
+                            style="width:70px;height:70px;">
+                        <h5>{{product.name}} </h5>
+                        <p>€{{product.price}}</p>
+                        <p>{{product.description}}</p>
+                        {% if product.available %}
+                        <p class="text-success font-weight-bold">{{product.stock}} in stock</p>
+                        {% else %}
+                        <p>Currently out of stock</p>
+                        {% endif %}
+                        <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id %}">Add to cart</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

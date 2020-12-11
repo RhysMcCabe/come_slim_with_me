@@ -19,8 +19,6 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse('topics_detail', args=[str(self.id)])
 
     def get_date_created(self):
         return self.date_created.strftime('created: %d/%m/%y at %H:%M')
