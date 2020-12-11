@@ -45,6 +45,7 @@ class TodoListView(ListView):
     context_object_name = 'todo_list'
     select_related = ("member", "category")
     date_created = ("dates")
+    paginate_by = 5
 
 class TodoDetailView(DetailView):
     model = Todo
