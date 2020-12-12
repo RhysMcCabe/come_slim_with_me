@@ -17,14 +17,14 @@
     <div class="row p-2">
         <div class="col">
             <a class="h4 font-weight-bold text-dark "
-                href="{% url 'discussion_detail' discussion.pk %}">{{ discussion.title|slice:"40" }}...</a>
+                href="{% url 'discussion_detail' discussion.slug %}">{{ discussion.title|slice:"40" }}...</a>
             <!--Only showing the first 40 characters of the title to avoid card sizes expanding-->
             <p>by {{ discussion.member }} | {{ discussion.get_date_created }}</p>
         </div>
         <div class="col">
             <p>{{ discussion.body|slice:"60" }}.....</p>
             <!--Slicing again to avoid spilling or cards expanding-->
-            <a href="{% url 'discussion_detail' discussion.pk %}">Read
+            <a href="{% url 'discussion_detail' discussion.slug %}">Read
                 more</a></small>
         </div>
 

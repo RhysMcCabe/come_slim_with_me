@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from datetime import datetime
+from django.utils.text import slugify
 
 #Topic model :  Each discussion is associated with a topic
 #               A topic can have many discussions
@@ -15,6 +16,11 @@ class Topic(models.Model):
 
     description = models.TextField(max_length=400)
     date_created = models.DateTimeField(default=datetime.now, blank=True)
+    slug = models.SlugField(null=True, unique=True)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super (Topic, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -35,12 +41,17 @@ class Discussion(models.Model):
     )
     date_created = models.DateTimeField(default=datetime.now, blank=True)
     image = models.ImageField(upload_to='media/imageuploads/', blank=True)
+    slug = models.SlugField(null=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super (Discussion, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('discussion_detail', args=[str(self.id)])
+        return reverse('discussion_detail', args=[str(self.slug)])
     
     def get_date_created(self):
         return self.date_created.strftime('created: %d/%m/%y at %H:%M')
@@ -59,9 +70,9 @@ class Comment(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
     )
-
+    
     def __str__(self):
         return self.comment
 
     def get_absolute_url(self):
-        return reverse('discussion_detail', args=[str(self.discussion.pk)])
+        return reverse('discussion_detail', args=[str(self.discussion.slug)])

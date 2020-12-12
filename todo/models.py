@@ -9,7 +9,7 @@ class Category(models.Model):
     member = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,)
-    
+
     class Meta:
         verbose_name = ("Category")
         verbose_name_plural = ("Categories")

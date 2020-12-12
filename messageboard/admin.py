@@ -11,6 +11,8 @@ class DiscussionAdmin(admin.ModelAdmin):
     inlines = [
         CommentInline
     ]
+    list_display = ('topic', 'title', 'body', 'member', 'date_created', 'image', 'slug')
+    prepopulated_fields = {'slug': ('title',)}
 
 class DiscussionInLine(admin.TabularInline):
     model = Discussion
@@ -20,6 +22,8 @@ class TopicAdmin(admin.ModelAdmin):
     inlines = [
         DiscussionInLine
     ]
+    list_display = ('name', 'member', 'description' ,'date_created', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
 
 admin.site.register(Discussion, DiscussionAdmin)
 

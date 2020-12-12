@@ -6,7 +6,7 @@
 <div class="card mt-4">
   <div class="discussion-entry p-3">
     <h4>{{ discussion.title }} - <a class="h4"
-        href="{% url 'topics_detail' discussion.topic.pk %}">{{ discussion.topic.name }}</a>
+        href="{% url 'topics_detail' discussion.topic.slug %}">{{ discussion.topic.name }}</a>
     </h4>
     <small>{{ discussion.get_date_created }} by {{ discussion.member }}</small>
     {% if discussion.image %}
@@ -19,8 +19,8 @@
     </div>
     {% if user.is_authenticated and user == discussion.member %}
     <!--Only showing option to edit / delete if the user is the author and logged in-->
-    <p><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
-        href="{% url 'discussion_delete' discussion.pk %}">Delete</a></p>
+    <p><a href="{% url 'discussion_edit' discussion.slug %}">Edit</a> | <a
+        href="{% url 'discussion_delete' discussion.slug %}">Delete</a></p>
     {% endif %}
   </div>
 
@@ -45,7 +45,7 @@
     {% endif %}
     </p>
     {% endfor %}
-    <a href="{% url 'discussion_comment' discussion.pk%}">Add Comment</a>
+    <a href="{% url 'discussion_comment' discussion.slug%}">Add Comment</a>
     <p>Back to <a href="{% url 'topic' %}">Topics</a>.</p>
   </div>
 

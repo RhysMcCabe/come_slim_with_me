@@ -26,18 +26,18 @@
     <div class="col-12 pt-3">
         <div class=" card p-1 discussion-entry border-primary">
             <div class="card-body">
-                <h4><a href="{% url 'discussion_detail' discussion.pk %}"
+                <h4><a href="{% url 'discussion_detail' discussion.slug %}"
                         class=" text-dark stretched-link">{{ discussion.title|slice:"50" }}</a></h4>
                 <p>{{ discussion.body|slice:"115" }}....</p>
 
             </div>
             <div class="card-footer" style="z-index: 1;">
                 <a class="h6 text-muted"
-                    href="{% url 'topics_detail' discussion.topic.pk %}">{{ discussion.topic.name }}</a>
+                    href="{% url 'topics_detail' discussion.topic.slug %}">{{ discussion.topic.name }}</a>
                 <small>{{ discussion.get_date_created }} by {{ discussion.member }}</small>
                 {% if user.is_authenticated and user == discussion.member %}
-                <small><a href="{% url 'discussion_edit' discussion.pk %}">Edit</a> | <a
-                        href="{% url 'discussion_delete' discussion.pk %}">Delete</a></small>
+                <small><a href="{% url 'discussion_edit' discussion.slug %}">Edit</a> | <a
+                        href="{% url 'discussion_delete' discussion.slug %}">Delete</a></small>
                 {% endif %}
             </div>
         </div>

@@ -15,7 +15,7 @@
             <small>{{ topic.description|slice:"30" }}...</small>
             <small>by {{topic.member}} - {{ topic.get_date_created }}</small>
             <small>{% if user.is_authenticated and user == topic.member %}
-                <a class="small" href="{% url 'topic_delete' topic.pk %}">Delete</a>
+                <a class="small" href="{% url 'topic_delete' topic.slug %}">Delete</a>
                 {% endif %}</small>
         </div>
     </div>
