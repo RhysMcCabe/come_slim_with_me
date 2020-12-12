@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from vouchers.models import Voucher
+from django.core.mail import send_mail
+from django.conf import settings
 
 class Order(models.Model):
     token = models.CharField(max_length=250, blank=True)
@@ -38,6 +40,7 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
+
 
 
 class OrderItem(models.Model):
