@@ -145,7 +145,13 @@ LOGOUT_REDIRECT_URL = 'home'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tudublinmerch@gmail.com'
+EMAIL_HOST_PASSWORD = 'lwjwjmbnonbjjgcz'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'TUD - Tallaght Merch Team <noreply@tudtallaghtmerch.com'
 
 MEDIA_URL = '/media/'
 MEIDA_ROOT = str(BASE_DIR.joinpath('media'))
