@@ -1,17 +1,29 @@
 {% load static %}
+
+
+
 {% block content %}
 {% include 'header.html' %}
+
 {% include 'shopBase.html' %}
 
 <head>
     <link rel="stylesheet" href="{% static 'css/products.css' %}">
 </head>
-<form class="col-2 md-form active-cyan active-cyan-2 ml-4 " action="{% url 'product_search' %}" method="get">
-    <input name="p" class="form-control" type="text" placeholder="Search products..." aria-label="Search">
-</form>
-<div class="row mx-auto pl-4">
-
-    {% for product in products %}
+<div class=" row pl-4">
+    <div class="col-6">
+        <h3 class="pl-3">Search Results:</h3>
+        <a class="nav-link" href="{% url 'products' %}">Back to homepage</a>
+    </div>
+    <div class="col-6 ">
+        <form class="col-5 md-form active-cyan active-cyan-2 mr-5 float-right " action="{% url 'product_search' %}"
+            method="get">
+            <input name="p" class="form-control" type="text" placeholder="Search products..." aria-label="Search">
+        </form>
+    </div>
+</div>
+<div class="row mx-auto pl-4 ">
+    {% for product in all_products_list %}
     <div class=" col-9 col-lg-3 col-sm-12 col-md-4 py-4">
         <div class="flip-card">
             <div class="flip-card-inner">
@@ -42,5 +54,5 @@
     {% endfor %}
 </div>
 
-{% endblock content %}
 {% include 'footer.html' %}
+{%endblock%}
