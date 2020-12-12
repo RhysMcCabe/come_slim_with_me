@@ -8,7 +8,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-success ml-2" type="submit">Log In</button>
+    <button class="btn btn-success ml-2" type="submit" onClick="checkBirthday();">Log In</button>
   </form>
 </div>
 <!-- If user has forgoten password, the link will bring them tp password reset page -->

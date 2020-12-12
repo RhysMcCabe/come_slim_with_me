@@ -7,7 +7,7 @@ Order History - TUD Tallaght Merch Store
 <div>
     <div class="text-center">
         <br>
-        <h1 class="text-center my_title">Order History</h1>
+        <h1 class="text-center my_title">Order History <i class="fas fa-history"></i></h1>
         <br>
         {% if order_details %}
         <table class="table table-striped">
@@ -26,14 +26,14 @@ Order History - TUD Tallaght Merch Store
                     <td>{{ order.id }}</td>
                     <td>{{ order.created|date:"d M Y" }}</td>
                     <td>{{ order.total }}</td>
-                    <td><i class="fas fa-check"></i>&nbsp;Complete</td>
+                    <td><i class="fas fa-check"></i>&nbsp;{{order.status}}</td>
                     <td><a href="{% url 'order:order_detail' order.id %}">View order</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         {% else %}
-        <p>You have not placed any orders yet!<br><br><a href="{% url 'products' %}" class="btn btn-secondary">Continue
+        <p>You have not placed any orders yet! <i class="far fa-frown"></i><br><br><a href="{% url 'products' %}" class="btn btn-secondary">Continue
                 shopping</a></p>
         {% endif %}
     </div>

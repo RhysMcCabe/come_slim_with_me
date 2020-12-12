@@ -45,3 +45,10 @@ nav img {
       display: none;
     }
   }
+
+
+.back_icon {
+  text-decoration: none;
+  color: rgb(4, 76, 115) !important;
+  font-size: 5em;
+}

@@ -4,7 +4,7 @@ from vouchers.models import Voucher
 
 class Order(models.Model):
     token = models.CharField(max_length=250, blank=True)
-    total = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Euro Oder Total')
+    total = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Euro Order Total')
     emailAddress= models.EmailField(max_length=250, blank=True, verbose_name='Email Address')
     created = models.DateTimeField(auto_now_add=True)
     billingName = models.CharField(max_length=250, blank=True)
@@ -25,6 +25,12 @@ class Order(models.Model):
     discount = models.IntegerField(default=0,
                                     validators=[MinValueValidator(0),
                                                 MaxValueValidator(100)])
+    choices = (('Received', 'Received'),
+        ('Scheduled', 'Scheduled'), 
+        ('Shipped', 'Shipped'),
+        ('In Progress','In Progress'),
+        )
+    status = models.CharField(max_length = 100, choices = choices, default="In Progress")
 
     class Meta:
         db_table = 'Order'
