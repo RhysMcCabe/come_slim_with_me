@@ -6,7 +6,7 @@ from django.conf import settings
 
 @receiver(signals.post_save, sender=Order)
 def order_email(sender, instance, **kwargs):
-    if instance.status == 'Recieved':
+    if instance.status == 'Received':
         subject = 'TUD - Tallaght Merch Order'
         message = 'Dear {}, \n\nYou have successfully placed an order with TUD - Tallaght Merch.\n\nYour order has being recieved and will be processed soon.\n\nThanks,\nThe TUD Tallaght Merch Team'.format(instance.billingName)
         from_email = settings.EMAIL_HOST_USER

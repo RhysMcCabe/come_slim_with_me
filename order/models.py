@@ -32,7 +32,7 @@ class Order(models.Model):
         ('Shipped', 'Shipped'),
         ('In Progress','In Progress'),
         )
-    status = models.CharField(max_length = 100, choices = choices, default="Recieved")
+    status = models.CharField(max_length = 100, choices = choices, default="Received")
 
     class Meta:
         db_table = 'Order'
