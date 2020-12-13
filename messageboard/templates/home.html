@@ -33,10 +33,10 @@
     <!--Shows all topics in alphabetical order-->
     <div class="col-11 text-center ">
         {% for topic in all_topics_list|dictsort:"name.lower" %}
+
         <div id="topic-card" class=" card border-primary topics-entry ">
             <div class="card-header ">
-                <h3><a href="{% url 'topics_detail' topic.slug %}" class=" text-dark stretched-link">{{ topic.name
-                        }}</a>
+                <h3><a href="{% url 'topics_detail' topic.slug %}" class=" text-dark stretched-link">{{topic.name}}</a>
                 </h3>
             </div>
             <div class="card-body " style="z-index: 1;">
