@@ -28,11 +28,11 @@ class Order(models.Model):
                                     validators=[MinValueValidator(0),
                                                 MaxValueValidator(100)])
     choices = (('Received', 'Received'),
-        ('Scheduled', 'Scheduled'), 
+        ('Delayed', 'Delayed'), 
         ('Shipped', 'Shipped'),
         ('In Progress','In Progress'),
         )
-    status = models.CharField(max_length = 100, choices = choices, default="In Progress")
+    status = models.CharField(max_length = 100, choices = choices, default="Recieved")
 
     class Meta:
         db_table = 'Order'

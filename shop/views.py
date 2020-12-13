@@ -13,7 +13,7 @@ def product_list(request, category_id=None):
     if(category_id):
         category = get_object_or_404(Category, id=category_id)
         products = products.filter(category=category)
-
+    
     return render(request, 'products.html',
                     {'products': products,
                     'countcat':ccat})
