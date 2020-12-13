@@ -43,3 +43,12 @@ def wishlist_detail(request, wishlist_items=None):
       pass
    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items} )
 
+
+@login_required
+def delete_from_list(request, product_id):
+    wishlist = Wishlist.objects.get(wishlist_id=_wishlist_id(request))
+    product = get_object_or_404(Product, id=product_id)
+    wishlist_item = WishlistItem.objects.get(product=product, wishlist=wishlist)
+    wishlist_item.delete()
+    return redirect('wishlist:wishlist_detail')
+

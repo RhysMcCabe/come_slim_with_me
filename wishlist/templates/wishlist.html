@@ -54,24 +54,27 @@
                     <p>€{{item.product.price}}</p>
                 </div>
                 <div class="flip-card-back text-center pt-4">
-                    <div class="">
-                        <img class="mb-2" src="{{item.product.image_thumbnail.url}}" alt="{{item.product.name}}"
-                            style="width:70px;height:70px;">
-                        <h5>{{item.product.name}} </h5>
-                        <p>€{{item.product.price}}</p>
-                        <p>{{item.product.description}}</p>
-                        {% if item.product.available %}
-                        <p class="text-success font-weight-bold">{{item.product.stock}} in stock</p>
-                        <a class="btn btn-secondary" href="{% url 'cart:add_cart' item.product.id %}">Add to cart</a>
 
-                        {% else %}
-                        <p>Currently out of stock</p>
-                        {% endif %}
+                    <img class="mb-2" src="{{item.product.image_thumbnail.url}}" alt="{{item.product.name}}"
+                        style="width:70px;height:70px;">
+                    <h5>{{item.product.name}} </h5>
+                    <p>€{{item.product.price}}</p>
+                    <p>{{item.product.description}}</p>
+                    {% if item.product.available %}
+                    <p class="text-success font-weight-bold">{{item.product.stock}} in stock <a
+                            href="{% url 'wishlist:delete_from_list' item.product.id %}" class="custom_icon"><i
+                                class="fas fa-minus-circle ml-4"></i> Remove</a></p>
+                    <a class="btn btn-secondary" href="{% url 'cart:add_cart' item.product.id %}">Add to
+                        cart</a>
+
+                    {% else %}
+                    <p>Currently out of stock</p>
+                    {% endif %}
 
 
 
 
-                    </div>
+
                 </div>
             </div>
         </div>
