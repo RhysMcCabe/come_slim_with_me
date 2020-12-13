@@ -4,10 +4,12 @@ from django.db.models import Count, Q
 from django.views.generic import ListView
 
 
+
 def product_list(request, category_id=None):
     category = None
     products = Product.objects.all()
     ccat = Category.objects.annotate(num_products=Count('products'))
+    
     if(category_id):
         category = get_object_or_404(Category, id=category_id)
         products = products.filter(category=category)
