@@ -1,18 +1,24 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-from datetime import datetime
-
+from shop.models import Product
 
 class Wishlist(models.Model):
-    name = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE,
-    )
-    date_created = models.DateTimeField(default=datetime.now, blank=True)
+    wishlist_id = models.CharField(max_length=250, blank=True)
+    date_added = models.DateField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'Wishlist'
+        ordering = ['date_added']
 
     def __str__(self):
-        return self.name
+        return self.wishlist_id
+
+class WishlistItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'WishlistItem'
 
 
-    def get_date_created(self):
-        return self.date_created.strftime('created: %d/%m/%y at %H:%M')
+    def __str__(self):
+        return self.product
