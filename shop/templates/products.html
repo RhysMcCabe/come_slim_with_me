@@ -5,10 +5,33 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    
 </head>
 <form class="col-2 md-form active-cyan active-cyan-2 ml-4 " action="{% url 'product_search' %}" method="get">
     <input name="p" class="form-control" type="text" placeholder="Search products..." aria-label="Search">
 </form>
+<script>
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+</script>
+</head>
+<body>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-gift"></i> A Christmas Treat Just For You! <i class="fas fa-gift"></i></h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4>To thank you for being a valued customer, we are giving you a 20% coupon for our shop!</h4>
+                <p>Simply enter the code <b><u>CHRISTMAS20</u></b> at the checkout!</p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row mx-auto pl-4">
 
     {% for product in products %}
@@ -41,7 +64,6 @@
     </div>
     {% endfor %}
 </div>
-
 
 {% endblock content %}
 {% include 'footer.html' %}
