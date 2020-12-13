@@ -1,0 +1,86 @@
+{% load static %}
+
+
+
+{% block content %}
+{% include 'header.html' %}
+
+{% include 'shopBase.html' %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+</head>
+<div class=" row pl-4">
+    <div class="col-6">
+        <h3 class="pl-3"></h3>
+        <a href="{% url 'products' %}" class="back_icon"><i class="far fa-arrow-alt-circle-left"></i></a>
+    </div>
+    <div class="col-6 ">
+        <form class="col-5 md-form active-cyan active-cyan-2 mr-5 float-right " action="{% url 'product_search' %}"
+            method="get">
+            <input name="p" class="form-control" type="text" placeholder="Search products..." aria-label="Search">
+        </form>
+    </div>
+</div>
+
+{% if not wishlist_items %}
+<div>
+    <div class="text-center">
+        <br>
+        <h1 class="text-center my_title">
+            Your wishlist is empty <i class="far fa-frown"></i>
+        </h1>
+        <br>
+        <p class="text-center">
+            Please click <a href="{% url 'products' %}">here</a> to continue shopping.
+        </p>
+    </div>
+</div>
+{% else %}
+
+
+
+
+<div class="row mx-auto pl-4">
+
+    {% for item in wishlist_items %}
+    <div class=" col-9 col-lg-3 col-sm-12 col-md-4 py-4">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="mt-2" src="{{item.product.image_thumbnail.url}}" alt="{{item.product.name}}"
+                        style="width:auto;height:auto;">
+                    <h5>{{item.product.name}}</h5>
+                    <p>€{{item.product.price}}</p>
+                </div>
+                <div class="flip-card-back text-center pt-4">
+
+                    <img class="mb-2" src="{{item.product.image_thumbnail.url}}" alt="{{item.product.name}}"
+                        style="width:70px;height:70px;">
+                    <h5>{{item.product.name}} </h5>
+                    <p>€{{item.product.price}}</p>
+                    <p>{{item.product.description}}</p>
+                    {% if item.product.available %}
+                    <p class="text-success font-weight-bold">{{item.product.stock}} in stock <a
+                            href="{% url 'wishlist:delete_from_list' item.product.id %}" class="custom_icon"><i
+                                class="fas fa-minus-circle ml-4"></i> Remove</a></p>
+                    <a class="btn btn-secondary" href="{% url 'cart:add_cart' item.product.id %}">Add to
+                        cart</a>
+
+                    {% else %}
+                    <p>Currently out of stock</p>
+                    {% endif %}
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% include 'footer.html' %}
+{%endblock%}

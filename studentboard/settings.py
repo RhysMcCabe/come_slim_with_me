@@ -71,7 +71,8 @@ TEMPLATES = [
                 str(BASE_DIR.joinpath('cart','templates')),
                 str(BASE_DIR.joinpath('order','templates')),
                 str(BASE_DIR.joinpath('messageboard','templates')),
-                str(BASE_DIR.joinpath('todo','templates'))],
+                str(BASE_DIR.joinpath('todo','templates')),
+                str(BASE_DIR.joinpath('wishlist','templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

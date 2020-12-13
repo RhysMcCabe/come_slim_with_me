@@ -6,67 +6,78 @@
 <head>
     <link rel="stylesheet" href="{% static 'css/products.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    
+
 </head>
 <form class="col-2 md-form active-cyan active-cyan-2 ml-4 " action="{% url 'product_search' %}" method="get">
     <input name="p" class="form-control" type="text" placeholder="Search products..." aria-label="Search">
 </form>
 <script>
+<<<<<<< HEAD
 $(window).on('load',function(){
   if (!sessionStorage.getItem('shown-modal')){
     $("#myModal").modal('show');
     sessionStorage.setItem('shown-modal', 'true');
   }
 });
+=======
+    $(document).ready(function () {
+        $("#myModal").modal('show');
+    });
+>>>>>>> 5b8b9dc19d03b08d84e754c9b14e4fa8d12e4fc5
 </script>
 </head>
+
 <body>
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title"><i class="fas fa-gift"></i> A Christmas Treat Just For You! <i class="fas fa-gift"></i></h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h4>To thank you for being a valued customer, we are giving you a 20% coupon for our shop!</h4>
-                <p>Simply enter the code <b><u>CHRISTMAS20</u></b> at the checkout!</p>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><i class="fas fa-gift"></i> A Christmas Treat Just For You! <i
+                            class="fas fa-gift"></i></h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h4>To thank you for being a valued customer, we are giving you a 20% coupon for our shop!</h4>
+                    <p>Simply enter the code <b><u>CHRISTMAS20</u></b> at the checkout!</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row mx-auto pl-4">
+    <div class="row mx-auto pl-4">
 
-    {% for product in products %}
-    <div class=" col-9 col-lg-3 col-sm-12 col-md-4 py-4">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img class="mt-2" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"
-                        style="width:auto;height:auto;">
-                    <h5>{{product.name}}</h5>
-                    <p>€{{product.price}}</p>
-                </div>
-                <div class="flip-card-back text-center pt-4">
-                    <div class="">
-                        <img class="mb-2" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"
-                            style="width:70px;height:70px;">
-                        <h5>{{product.name}} </h5>
+        {% for product in products %}
+        <div class=" col-9 col-lg-3 col-sm-12 col-md-4 py-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img class="mt-2" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"
+                            style="width:auto;height:auto;">
+                        <h5>{{product.name}}</h5>
                         <p>€{{product.price}}</p>
-                        <p>{{product.description}}</p>
-                        {% if product.available %}
-                        <p class="text-success font-weight-bold">{{product.stock}} in stock</p>
-                        {% else %}
-                        <p>Currently out of stock</p>
-                        {% endif %}
-                        <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id %}">Add to cart</a>
+                    </div>
+                    <div class="flip-card-back text-center pt-4">
+                        <div class="">
+                            <img class="mb-2" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"
+                                style="width:70px;height:70px;">
+                            <h5>{{product.name}} </h5>
+                            <p>€{{product.price}}</p>
+                            <p>{{product.description}}</p>
+                            {% if product.available %}
+                            <p class="text-success font-weight-bold">{{product.stock}} in stock</p>
+
+                            {% else %}
+                            <p>Currently out of stock</p>
+                            {% endif %}
+                            <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id %}">Add to cart</a>
+                            <a class=" text-white btn far fa-bookmark"
+                                href="{% url 'wishlist:add_to_wishlist' product.id %}"> Add to wishlist</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
-{% endblock content %}
-{% include 'footer.html' %}
+    {% endblock content %}
+    {% include 'footer.html' %}
