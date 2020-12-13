@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'vouchers',
     #3rd party
     'crispy_forms',
+    'wishlist',
 ]
 
 MIDDLEWARE = [

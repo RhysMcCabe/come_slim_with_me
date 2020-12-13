@@ -8,12 +8,12 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 </head>
-<div id="jt" class="jumbotron mt-4">
+<div id="jt" class="jumbotron m-4">
     <h1 class="display-3">Welcome to the TUD-Tallaght StudentBoard!</h1>
     <p class="lead">Connect with your classmates, create discussions and reply to others!</p>
 </div>
 <h2 class="text-white text-center mt-5">Topics A-Z</h2>
-<div class="row ml-5">
+<div class="row ">
     <div class="col">
         <!--Only shows the 'create new topic' button if the user is logged in-->
         {% if user.is_authenticated %}
@@ -24,18 +24,19 @@
     </div>
 
 
-    <form class="col-5 md-form active-cyan active-cyan-2 mr-5 " action="{% url 'topic_search_results' %}" method="get">
+    <form class="col-5 md-form active-cyan active-cyan-2  " action="{% url 'topic_search_results' %}" method="get">
         <input name="q" class="form-control" type="text" placeholder="Search topics..." aria-label="Search">
     </form>
 </div>
 <div class="row justify-content-center">
 
     <!--Shows all topics in alphabetical order-->
-    <div class="col-11 text-center ">
+    <div class="col-12 text-center ">
         {% for topic in all_topics_list|dictsort:"name.lower" %}
+
         <div id="topic-card" class=" card border-primary topics-entry ">
             <div class="card-header ">
-                <h3><a href="{% url 'topics_detail' topic.slug %}" class=" text-dark stretched-link">{{ topic.name }}</a>
+                <h3><a href="{% url 'topics_detail' topic.slug %}" class=" text-dark stretched-link">{{topic.name}}</a>
                 </h3>
             </div>
             <div class="card-body " style="z-index: 1;">
@@ -52,7 +53,9 @@
         </div>
         {% endfor %}
     </div>
+
 </div>
+
 <div class="row ml-4" style="z-index: 1;">
     {% if is_paginated %}
     <div class="pagination">
@@ -68,7 +71,8 @@
             {% endif %}
         </span>
     </div>
+    {% endif %}
 </div>
-{% endif %}
+
 
 {% endblock content %}

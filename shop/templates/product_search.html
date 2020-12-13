@@ -1,0 +1,58 @@
+{% load static %}
+
+
+
+{% block content %}
+{% include 'header.html' %}
+
+{% include 'shopBase.html' %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+</head>
+<div class=" row pl-4">
+    <div class="col-6">
+        <h3 class="pl-3">Search Results:</h3>
+        <a class="nav-link" href="{% url 'products' %}">Back to homepage</a>
+    </div>
+    <div class="col-6 ">
+        <form class="col-5 md-form active-cyan active-cyan-2 mr-5 float-right " action="{% url 'product_search' %}"
+            method="get">
+            <input name="p" class="form-control" type="text" placeholder="Search products..." aria-label="Search">
+        </form>
+    </div>
+</div>
+<div class="row mx-auto pl-4 ">
+    {% for product in all_products_list %}
+    <div class=" col-9 col-lg-3 col-sm-12 col-md-4 py-4">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="mt-2" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"
+                        style="width:auto;height:auto;">
+                    <h5>{{product.name}}</h5>
+                    <p>€{{product.price}}</p>
+                </div>
+                <div class="flip-card-back text-center pt-4">
+                    <div class="">
+                        <img class="mb-2" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"
+                            style="width:70px;height:70px;">
+                        <h5>{{product.name}} </h5>
+                        <p>€{{product.price}}</p>
+                        <p>{{product.description}}</p>
+                        {% if product.available %}
+                        <p class="text-success font-weight-bold">{{product.stock}} in stock</p>
+                        {% else %}
+                        <p>Currently out of stock</p>
+                        {% endif %}
+                        <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id %}">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% include 'footer.html' %}
+{%endblock%}
