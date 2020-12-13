@@ -32,6 +32,6 @@ def inprogress_email(sender, instance, **kwargs):
 def delayed_email(sender, instance, **kwargs):
     if instance.status == 'Delayed':
         subject = 'TUD - Tallaght Merch Order'
-        message = 'Dear {}, \n\nUnfortunetly your order has being delayed, \n We endevour to get your order back on track as soona as possible.\nWe hope your order will be ready for dispatch within the next 4 working days.\n\nFot the inconvience this may cause, we are giving you a coupon code for 10% off your next order. Just use the code DELAY10 at the checkout.\n\nThanks,\nThe TUD Tallaght Merch Team'.format(instance.billingName)
+        message = 'Dear {}, \n\nUnfortunetly, your order has being delayed. \n We endevour to get your order back on track as soon as possible.\nWe hope your order will be ready for dispatch within the next 4 working days.\n\nFor the inconvience this may cause, we are giving you a coupon code for 10% off your next order. Just use the code DELAY10 at the checkout.\n\nThanks,\nThe TUD Tallaght Merch Team'.format(instance.billingName)
         from_email = settings.EMAIL_HOST_USER
         send_mail(subject, message, from_email, [instance.emailAddress], fail_silently=False,)
