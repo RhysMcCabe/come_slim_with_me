@@ -3,6 +3,8 @@ superuser:  laurenm
 
 
 install:
-{python -m pip install Pillow}
+{pip install Pillow}
 {pip install django-crispy-forms}
-{python -m pip install braces}
+{pip install django-braces}
+{pip install django-imagekit)
+{pip install stripe}
